@@ -1,2 +1,6 @@
 #.vscode/launch.json
 #.vscode/tasks.json
+bin
+obj
+obj/Debug/netcoreapp3.0/SistemaMAV.assets.cache
+obj/Debug/netcoreapp3.0/SistemaMAV.csprojAssemblyReference.cache
