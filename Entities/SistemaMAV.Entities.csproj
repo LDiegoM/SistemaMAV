@@ -7,8 +7,4 @@
   <ItemGroup>
     <Reference Include="netstandard, Version=2.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" />
   </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Entities\SistemaMAV.Entities.csproj" />
-  </ItemGroup>
 </Project>
