@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace SistemaMAV.UI.Web.Models {
-    public class Marca {
+    public class MarcaViewModel {
         [Display(Name = "Código")]
         public int MarcaId { get; set; }
 

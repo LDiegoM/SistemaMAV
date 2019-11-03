@@ -7,6 +7,6 @@ namespace SistemaMAV.UI.Web.Models {
         {
         }
 
-        public DbSet<SistemaMAV.UI.Web.Models.Marca> Marca { get; set; }
+        public DbSet<SistemaMAV.Entities.Models.Marca> Marca { get; set; }
     }
 }

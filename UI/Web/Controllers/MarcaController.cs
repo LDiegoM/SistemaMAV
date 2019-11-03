@@ -53,7 +53,7 @@ namespace SistemaMAV.UI.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MarcaId,Detalle,Activo")] Marca marca)
+        public async Task<IActionResult> Create([Bind("MarcaId,Detalle,Activo")] MarcaViewModel marca)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace SistemaMAV.UI.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MarcaId,Detalle,Activo")] Marca marca)
+        public async Task<IActionResult> Edit(int id, [Bind("MarcaId,Detalle,Activo")] MarcaViewModel marca)
         {
             if (id != marca.MarcaId)
             {

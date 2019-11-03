@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
+using SistemaMAV.Entities.Models;
 
 namespace SistemaMAV.UI.Web.Models {
     public static class InitData {
