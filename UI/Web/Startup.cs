@@ -21,7 +21,7 @@ namespace SistemaMAV.UI.Web {
         public void ConfigureServices(IServiceCollection services) {
             services.AddControllersWithViews();
 
-            services.AddDbContext<SistemaMAV.UI.Web.Models.MavDbContext>(options =>
+            services.AddDbContext<SistemaMAV.DataAccess.Data.MavDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("MavDbContext")));
         }
 

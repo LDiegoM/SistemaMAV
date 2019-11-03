@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using SistemaMAV.UI.Web.Models;
+using SistemaMAV.DataAccess.Data;
 
 namespace SistemaMAV.UI.Web {
     public class Program {

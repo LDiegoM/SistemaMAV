@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace SistemaMAV.UI.Web.Models {
+namespace SistemaMAV.DataAccess.Data {
     public class MavDbContext : DbContext {
         public MavDbContext (DbContextOptions<MavDbContext> options)
             : base(options)
