@@ -1,41 +1,59 @@
 @model IEnumerable<SistemaMAV.UI.Web.Models.MarcaViewModel>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Marcas";
 }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+@Html.Raw(SistemaMAV.UI.Web.Helpers.References.GetReferences_DataTables())
+    
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box box-primary">
+            <div class="box-header">
+                <h3 class="box-title">@ViewBag.Title</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <p>
+                    <a class="btn btn-primary btn-sm" href="/Marca/Create" title="Nuevo"><span class="glyphicon glyphicon-plus" style="margin-right: 5px;"></span>Nuevo</a>
+                </p>
+                <table id="grd" class="table table-bordered table-striped table-hover">
     <thead>
         <tr>
+            <th></th>
             <th>
                 @Html.DisplayNameFor(model => model.Detalle)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Activo)
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
             <td>
+                <a class="btn btn-primary btn-xs" href="/Marca/Edit/@Html.Raw(item.MarcaId)" title="Modificar"><span class="glyphicon glyphicon-pencil"> </span></a>
+                <a class="btn btn-default btn-xs" href="/Marca/Details/@Html.Raw(item.MarcaId)" title="Detalles"><span class="glyphicon glyphicon-eye-open"> </span></a>
+                <a class="btn btn-danger btn-xs" href="/Marca/Delete/@Html.Raw(item.MarcaId)" title="Borrar"><span class="glyphicon glyphicon-remove"> </span></a>
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Detalle)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Activo)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.MarcaId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.MarcaId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.MarcaId">Delete</a>
+                @Html.Raw(item.Activo ? "Si" : "No")
             </td>
         </tr>
 }
     </tbody>
-</table>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- page script -->
+<script>
+    $(document).ready(function () {
+        initDataGrid("grd");
+    });
+</script>

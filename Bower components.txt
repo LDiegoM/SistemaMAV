@@ -1,0 +1,26 @@
+bower install bootstrap
+bower install bootstrap-datepicker
+bower install bootstrap-slider
+bower install bootstrap-wysihtml5
+bower install datatables.net
+bower install datatables.net-bs
+bower install datatables.net-buttons
+bower install datatables.net-buttons-bs
+bower install datatables.net-fixedheader
+bower install datatables.net-fixedheader-bs
+bower install datatables.net-responsive
+bower install datatables.net-responsive-bs
+bower install fastclick
+bower install font-awesome
+bower install iCheck
+bower install jquery.inputmask
+bower install ionicons
+bower install jquery-slimscroll
+bower install jquery-ui
+bower install jszip
+bower install jvectormap
+bower install moment
+bower install pace
+bower install select2
+bower install bootstrap-timepicker
+

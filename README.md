@@ -34,6 +34,9 @@ Si esto arroja error, ejecutar lo siguiente:
 dotnet tool install --global dotnet-ef
 ```
 
+Est otra página muestra como crear la base de datos directamente:
+https://www.talkingdotnet.com/create-sqlite-db-entity-framework-core-code-first/
+
 ## Agregar un nuevo proyecto de librería de clases
 
 Para ver la lista de los tipos de proyectos que se pueden crear
@@ -58,4 +61,9 @@ Para referenciar el nuevo project a otro
 dotnet add DataAccess\SistemaMAV.DataAccess.csproj reference Entities\SistemaMAV.Entities.csproj
 
 dotnet add UI\Web\SistemaMAV.UI.Web.csproj reference Entities\SistemaMAV.Entities.csproj
+```
+
+Finalmente, hay que agregar el nuevo proyecto a la solución:
+```
+dotnet sln SistemaMAV.sln add Entities/SistemaMAV.Entities.csproj
 ```
