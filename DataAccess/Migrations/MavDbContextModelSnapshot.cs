@@ -2,17 +2,16 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SistemaMAV.UI.Web.Models;
+using SistemaMAV.Entities.Models;
+using SistemaMAV.DataAccess.Data;
 
-namespace SistemaMAV.UI.Web.Migrations
+namespace SistemaMAV.DataAccess.Migrations
 {
     [DbContext(typeof(MavDbContext))]
-    [Migration("20191101051625_InitialCreate")]
-    partial class InitialCreate
+    partial class MavDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

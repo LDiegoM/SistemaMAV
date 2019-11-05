@@ -2,8 +2,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
+using SistemaMAV.Entities.Models;
 
-namespace SistemaMAV.UI.Web.Models {
+namespace SistemaMAV.DataAccess.Data {
     public static class InitData {
         public static void Initialize(IServiceProvider serviceProvider) {
             using (var context = new MavDbContext(serviceProvider.GetRequiredService<DbContextOptions<MavDbContext>>()))

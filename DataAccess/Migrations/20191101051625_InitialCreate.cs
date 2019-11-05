@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace SistemaMAV.UI.Web.Migrations {
+namespace SistemaMAV.DataAccess.Migrations {
     public partial class InitialCreate : Migration {
         protected override void Up(MigrationBuilder migrationBuilder) {
             migrationBuilder.CreateTable(

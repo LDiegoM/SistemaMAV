@@ -1,12 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace SistemaMAV.UI.Web.Models {
+namespace SistemaMAV.DataAccess.Data {
     public class MavDbContext : DbContext {
         public MavDbContext (DbContextOptions<MavDbContext> options)
             : base(options)
         {
         }
 
-        public DbSet<SistemaMAV.UI.Web.Models.Marca> Marca { get; set; }
+        public DbSet<SistemaMAV.Entities.Models.Marca> Marca { get; set; }
     }
 }
