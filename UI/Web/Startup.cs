@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.EntityFrameworkCore;
+//using Microsoft.EntityFrameworkCore;
 
 namespace SistemaMAV.UI.Web {
     public class Startup {
@@ -21,8 +21,9 @@ namespace SistemaMAV.UI.Web {
         public void ConfigureServices(IServiceCollection services) {
             services.AddControllersWithViews();
 
-            services.AddDbContext<SistemaMAV.DataAccess.Data.MavDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("MavDbContext")));
+            // services.AddDbContext<SistemaMAV.DataAccess.Data.MavDbContext>(options =>
+            //     options.UseSqlServer(Configuration.GetConnectionString("MavDbContext")));
+            SistemaMAV.DataAccess.Data.InitContext.AddDbContextToService(services, Configuration, false);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
