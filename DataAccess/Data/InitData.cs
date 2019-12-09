@@ -15,13 +15,11 @@ namespace SistemaMAV.DataAccess.Data {
 
                 context.Marca.AddRange(
                     new Marca {
-                        MarcaId = 1,
                         Detalle = "Ford",
                         Activo = true
                     },
 
                     new Marca {
-                        MarcaId = 2,
                         Detalle = "Chevrolet",
                         Activo = true
                     }
