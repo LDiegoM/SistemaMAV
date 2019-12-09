@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SistemaMAV.Entities.Models {
-    public class Marca {
+    public class TipoUnidad {
         [Key]
-        public int MarcaId { get; set; }
+        public int TipoUnidadId { get; set; }
 
         [Required]
         [Column(TypeName = "varchar(50)")]
@@ -14,7 +14,8 @@ namespace SistemaMAV.Entities.Models {
         
         [Column(TypeName = "bit")]
         public bool Activo { get; set; }
-
+ 
         public ICollection<Modelo> Modelos { get; set; }
-    }
+
+   }
 }
