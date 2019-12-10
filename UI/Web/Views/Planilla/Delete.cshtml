@@ -1,7 +1,7 @@
-@model SistemaMAV.UI.Web.Models.MarcaViewModel
+@model SistemaMAV.UI.Web.Models.PlanillaViewModel
 
 @{
-    ViewData["Title"] = "Eliminar la Marca " + Model.Detalle;
+    ViewData["Title"] = "Eliminar la Planilla de Mantenimiento " + Model.Detalle;
     string objName = this.ViewContext.RouteData.Values["controller"].ToString();
 }
 
@@ -18,10 +18,28 @@
                 <div>
                     <dl class="row">
                         <dt class = "col-sm-2">
+                            @Html.DisplayNameFor(model => model.Modelo)
+                        </dt>
+                        <dd class = "col-sm-10">
+                            @Html.DisplayFor(model => model.Modelo.Detalle)
+                        </dd class>
+                        <dt class = "col-sm-2">
                             @Html.DisplayNameFor(model => model.Detalle)
                         </dt>
                         <dd class = "col-sm-10">
                             @Html.DisplayFor(model => model.Detalle)
+                        </dd>
+                        <dt class = "col-sm-2">
+                            @Html.DisplayNameFor(model => model.AnioFabricacion)
+                        </dt>
+                        <dd class = "col-sm-10">
+                            @Html.DisplayFor(model => model.AnioFabricacion)
+                        </dd>
+                        <dt class = "col-sm-2">
+                            @Html.DisplayNameFor(model => model.Version)
+                        </dt>
+                        <dd class = "col-sm-10">
+                            @Html.DisplayFor(model => model.Version)
                         </dd>
                         <dt class = "col-sm-2">
                             @Html.DisplayNameFor(model => model.Activo)
@@ -32,7 +50,7 @@
                     </dl>
     
                     <form asp-action="Delete">
-                        <input type="hidden" asp-for="MarcaId" />
+                        <input type="hidden" asp-for="PlanillaId" />
                         <div class="form-actions no-color">
                             <a class="btn btn-default" href="/@Html.Raw(objName)/Index" title="Volver"><span class="glyphicon glyphicon-arrow-left" style="margin-right: 5px;"></span>Volver</a>
                             <input type="submit" value="Eliminar" class="btn btn-danger" />

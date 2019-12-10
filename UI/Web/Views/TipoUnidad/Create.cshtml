@@ -1,7 +1,7 @@
-@model SistemaMAV.UI.Web.Models.MarcaViewModel
+@model SistemaMAV.UI.Web.Models.TipoUnidadViewModel
 
 @{
-    ViewData["Title"] = "Modificar la Marca " + Model.Detalle;
+    ViewData["Title"] = "Nuevo Tipo de Unidad";
     string objName = this.ViewContext.RouteData.Values["controller"].ToString();
 }
 
@@ -13,10 +13,9 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-                <form asp-action="Edit">
+                <form asp-action="Create">
                     <div class="form-horizontal">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                        <input type="hidden" asp-for="MarcaId" />
                         <div class="form-group">
                             <label asp-for="Detalle" class="control-label col-md-2"></label>
                             <div class="col-md-10">
@@ -35,7 +34,7 @@
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
                                 <a class="btn btn-default" href="/@Html.Raw(objName)/Index" title="Volver"><span class="glyphicon glyphicon-arrow-left" style="margin-right: 5px;"></span>Volver</a>
-                                <input type="submit" value="Guardar" class="btn btn-primary" />
+                                <input type="submit" value="Crear" class="btn btn-primary" />
                             </div>
                         </div>
                     </div>

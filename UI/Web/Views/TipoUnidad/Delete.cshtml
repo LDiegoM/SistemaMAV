@@ -1,7 +1,7 @@
-@model SistemaMAV.UI.Web.Models.MarcaViewModel
+@model SistemaMAV.UI.Web.Models.TipoUnidadViewModel
 
 @{
-    ViewData["Title"] = "Eliminar la Marca " + Model.Detalle;
+    ViewData["Title"] = "Eliminar el Tipo de Unidad " + Model.Detalle;
     string objName = this.ViewContext.RouteData.Values["controller"].ToString();
 }
 
@@ -32,7 +32,7 @@
                     </dl>
     
                     <form asp-action="Delete">
-                        <input type="hidden" asp-for="MarcaId" />
+                        <input type="hidden" asp-for="TipoUnidadId" />
                         <div class="form-actions no-color">
                             <a class="btn btn-default" href="/@Html.Raw(objName)/Index" title="Volver"><span class="glyphicon glyphicon-arrow-left" style="margin-right: 5px;"></span>Volver</a>
                             <input type="submit" value="Eliminar" class="btn btn-danger" />

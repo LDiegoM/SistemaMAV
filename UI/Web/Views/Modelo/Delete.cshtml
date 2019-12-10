@@ -1,7 +1,7 @@
-@model SistemaMAV.UI.Web.Models.MarcaViewModel
+@model SistemaMAV.UI.Web.Models.ModeloViewModel
 
 @{
-    ViewData["Title"] = "Eliminar la Marca " + Model.Detalle;
+    ViewData["Title"] = "Eliminar el Modelo " + Model.Detalle;
     string objName = this.ViewContext.RouteData.Values["controller"].ToString();
 }
 
@@ -24,10 +24,28 @@
                             @Html.DisplayFor(model => model.Detalle)
                         </dd>
                         <dt class = "col-sm-2">
-                            @Html.DisplayNameFor(model => model.Activo)
+                            @Html.DisplayNameFor(model => model.Marca)
                         </dt>
                         <dd class = "col-sm-10">
-                            @Html.DisplayFor(model => model.Activo)
+                            @Html.DisplayFor(model => model.Marca.Detalle)
+                        </dd class>
+                        <dt class = "col-sm-2">
+                            @Html.DisplayNameFor(model => model.TipoUnidad)
+                        </dt>
+                        <dd class = "col-sm-10">
+                            @Html.DisplayFor(model => model.TipoUnidad.Detalle)
+                        </dd class>
+                        <dt class = "col-sm-2">
+                            @Html.DisplayNameFor(model => model.FechaAlta)
+                        </dt>
+                        <dd class = "col-sm-10">
+                            @Html.DisplayFor(model => model.FechaAlta)
+                        </dd>
+                        <dt class = "col-sm-2">
+                            @Html.DisplayNameFor(model => model.FechaBaja)
+                        </dt>
+                        <dd class = "col-sm-10">
+                            @Html.DisplayFor(model => model.FechaBaja)
                         </dd>
                     </dl>
     

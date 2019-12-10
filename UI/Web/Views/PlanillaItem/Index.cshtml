@@ -1,0 +1,90 @@
+@model IEnumerable<SistemaMAV.UI.Web.Models.PlanillaItemViewModel>
+
+@{
+    ViewData["Title"] = "Items de Planillas de Mantenimiento";
+    string objName = this.ViewContext.RouteData.Values["controller"].ToString();
+}
+
+@Html.Raw(SistemaMAV.UI.Web.Helpers.References.GetReferences_DataTables())
+    
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box box-primary">
+            <div class="box-header">
+                <h3 class="box-title">@ViewBag.Title</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <p>
+                    <a class="btn btn-primary btn-sm" href="/@Html.Raw(objName)/Create" title="Nuevo"><span class="glyphicon glyphicon-plus" style="margin-right: 5px;"></span>Nuevo</a>
+                </p>
+                <table id="grd" class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Planilla)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ItemMantenimiento)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Kilometros)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Meses)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Recomendaciones)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Observaciones)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.InfoExtra)
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+@foreach (var item in Model) {
+                        <tr>
+                            <td>
+                                <a class="btn btn-primary btn-xs" href="/@Html.Raw(objName)/Edit/@Html.Raw(item.PlanillaItemId)" title="Modificar"><span class="glyphicon glyphicon-pencil"> </span></a>
+                                <a class="btn btn-default btn-xs" href="/@Html.Raw(objName)/Details/@Html.Raw(item.PlanillaItemId)" title="Detalles"><span class="glyphicon glyphicon-eye-open"> </span></a>
+                                <a class="btn btn-danger btn-xs" href="/@Html.Raw(objName)/Delete/@Html.Raw(item.PlanillaItemId)" title="Borrar"><span class="glyphicon glyphicon-remove"> </span></a>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Planilla.Detalle)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ItemMantenimiento.Detalle)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Kilometros)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Meses)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Recomendaciones)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Observaciones)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.InfoExtra)
+                            </td>
+                        </tr>
+}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- page script -->
+<script>
+    $(document).ready(function () {
+        initDataGrid("grd");
+    });
+</script>

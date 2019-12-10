@@ -1,12 +1,12 @@
-@model IEnumerable<SistemaMAV.UI.Web.Models.MarcaViewModel>
+@model IEnumerable<SistemaMAV.UI.Web.Models.ItemMantenimientoViewModel>
 
 @{
-    ViewData["Title"] = "Marcas";
+    ViewData["Title"] = "Items de Mantenimiento";
     string objName = this.ViewContext.RouteData.Values["controller"].ToString();
 }
 
 @Html.Raw(SistemaMAV.UI.Web.Helpers.References.GetReferences_DataTables())
-    
+
 <div class="row">
     <div class="col-xs-12">
         <div class="box box-primary">
@@ -26,7 +26,10 @@
                                 @Html.DisplayNameFor(model => model.Detalle)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Activo)
+                                @Html.DisplayNameFor(model => model.KilometrosPredeterminado)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.TiempoPredeterminado)
                             </th>
                         </tr>
                     </thead>
@@ -34,15 +37,18 @@
 @foreach (var item in Model) {
                         <tr>
                             <td>
-                                <a class="btn btn-primary btn-xs" href="/@Html.Raw(objName)/Edit/@Html.Raw(item.MarcaId)" title="Modificar"><span class="glyphicon glyphicon-pencil"> </span></a>
-                                <a class="btn btn-default btn-xs" href="/@Html.Raw(objName)/Details/@Html.Raw(item.MarcaId)" title="Detalles"><span class="glyphicon glyphicon-eye-open"> </span></a>
-                                <a class="btn btn-danger btn-xs" href="/@Html.Raw(objName)/Delete/@Html.Raw(item.MarcaId)" title="Borrar"><span class="glyphicon glyphicon-remove"> </span></a>
+                                <a class="btn btn-primary btn-xs" href="/@Html.Raw(objName)/Edit/@Html.Raw(item.ItemMantenimientoId)" title="Modificar"><span class="glyphicon glyphicon-pencil"> </span></a>
+                                <a class="btn btn-default btn-xs" href="/@Html.Raw(objName)/Details/@Html.Raw(item.ItemMantenimientoId)" title="Detalles"><span class="glyphicon glyphicon-eye-open"> </span></a>
+                                <a class="btn btn-danger btn-xs" href="/@Html.Raw(objName)/Delete/@Html.Raw(item.ItemMantenimientoId)" title="Borrar"><span class="glyphicon glyphicon-remove"> </span></a>
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Detalle)
                             </td>
                             <td>
-                                @Html.Raw(item.Activo ? "Si" : "No")
+                                @Html.DisplayFor(modelItem => item.KilometrosPredeterminado)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TiempoPredeterminado)
                             </td>
                         </tr>
 }

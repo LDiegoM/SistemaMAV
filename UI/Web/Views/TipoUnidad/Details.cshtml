@@ -1,7 +1,7 @@
-@model SistemaMAV.UI.Web.Models.MarcaViewModel
+@model SistemaMAV.UI.Web.Models.TipoUnidadViewModel
 
 @{
-    ViewData["Title"] = "Detalles de la Marca " + Model.Detalle;
+    ViewData["Title"] = "Detalles del Tipo de Unidad " + Model.Detalle;
     string objName = this.ViewContext.RouteData.Values["controller"].ToString();
 }
 
@@ -28,7 +28,7 @@
                     </dd>
                 </dl>
                 <p>
-                    <a class="btn btn-primary" href="/@Html.Raw(objName)/Edit/@Html.Raw(Model.MarcaId)" title="Modificar"><span class="glyphicon glyphicon-pencil" style="margin-right: 5px;"></span>Modificar</a>
+                    <a class="btn btn-primary" href="/@Html.Raw(objName)/Edit/@Html.Raw(Model.TipoUnidadId)" title="Modificar"><span class="glyphicon glyphicon-pencil" style="margin-right: 5px;"></span>Modificar</a>
                     <a class="btn btn-default" href="/@Html.Raw(objName)/Index" title="Volver"><span class="glyphicon glyphicon-arrow-left" style="margin-right: 5px;"></span>Volver</a>
                 </p>
             </div>
