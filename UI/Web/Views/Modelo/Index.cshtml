@@ -1,7 +1,7 @@
-@model IEnumerable<SistemaMAV.UI.Web.Models.MarcaViewModel>
+@model IEnumerable<SistemaMAV.UI.Web.Models.ModeloViewModel>
 
 @{
-    ViewData["Title"] = "Marcas";
+    ViewData["Title"] = "Modelos";
     string objName = this.ViewContext.RouteData.Values["controller"].ToString();
 }
 
@@ -26,7 +26,16 @@
                                 @Html.DisplayNameFor(model => model.Detalle)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Activo)
+                                @Html.DisplayNameFor(model => model.Marca)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.TipoUnidad)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FechaAlta)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FechaBaja)
                             </th>
                         </tr>
                     </thead>
@@ -34,15 +43,24 @@
 @foreach (var item in Model) {
                         <tr>
                             <td>
-                                <a class="btn btn-primary btn-xs" href="/@Html.Raw(objName)/Edit/@Html.Raw(item.MarcaId)" title="Modificar"><span class="glyphicon glyphicon-pencil"> </span></a>
-                                <a class="btn btn-default btn-xs" href="/@Html.Raw(objName)/Details/@Html.Raw(item.MarcaId)" title="Detalles"><span class="glyphicon glyphicon-eye-open"> </span></a>
-                                <a class="btn btn-danger btn-xs" href="/@Html.Raw(objName)/Delete/@Html.Raw(item.MarcaId)" title="Borrar"><span class="glyphicon glyphicon-remove"> </span></a>
+                                <a class="btn btn-primary btn-xs" href="/@Html.Raw(objName)/Edit/@Html.Raw(item.ModeloId)" title="Modificar"><span class="glyphicon glyphicon-pencil"> </span></a>
+                                <a class="btn btn-default btn-xs" href="/@Html.Raw(objName)/Details/@Html.Raw(item.ModeloId)" title="Detalles"><span class="glyphicon glyphicon-eye-open"> </span></a>
+                                <a class="btn btn-danger btn-xs" href="/@Html.Raw(objName)/Delete/@Html.Raw(item.ModeloId)" title="Borrar"><span class="glyphicon glyphicon-remove"> </span></a>
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Detalle)
                             </td>
                             <td>
-                                @Html.Raw(item.Activo ? "Si" : "No")
+                                @Html.DisplayFor(modelItem => item.Marca.Detalle)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TipoUnidad.Detalle)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FechaAlta)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FechaBaja)
                             </td>
                         </tr>
 }

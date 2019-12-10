@@ -23,7 +23,7 @@ namespace SistemaMAV.UI.Web {
 
             // services.AddDbContext<SistemaMAV.DataAccess.Data.MavDbContext>(options =>
             //     options.UseSqlServer(Configuration.GetConnectionString("MavDbContext")));
-            SistemaMAV.DataAccess.Data.InitContext.AddDbContextToService(services, Configuration, false);
+            SistemaMAV.DataAccess.Data.InitContext.AddDbContextToService(services, Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

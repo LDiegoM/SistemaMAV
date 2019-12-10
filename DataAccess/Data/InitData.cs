@@ -24,6 +24,37 @@ namespace SistemaMAV.DataAccess.Data {
                         Activo = true
                     }
                 );
+
+                context.TipoUnidad.AddRange(
+                    new TipoUnidad {
+                        Detalle = "Automóvil",
+                        Activo = true
+                    },
+
+                    new TipoUnidad {
+                        Detalle = "Motocicleta",
+                        Activo = true
+                    },
+
+                    new TipoUnidad {
+                        Detalle = "Vehículo pesado",
+                        Activo = true
+                    }
+                );
+
+                context.ItemMantenimiento.AddRange(
+                    new ItemMantenimiento {
+                        Detalle = "Cambio de aceite",
+                        KilometrosPredeterminado = 10000,
+                        TiempoPredeterminado = 12
+                    },
+
+                    new ItemMantenimiento {
+                        Detalle = "Correa de accesorios: sustituir",
+                        KilometrosPredeterminado = 50000
+                    }
+                );
+
                 context.SaveChanges();
             }
         }

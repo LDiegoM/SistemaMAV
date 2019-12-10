@@ -1,7 +1,7 @@
-@model IEnumerable<SistemaMAV.UI.Web.Models.MarcaViewModel>
+@model IEnumerable<SistemaMAV.UI.Web.Models.TipoUnidadViewModel>
 
 @{
-    ViewData["Title"] = "Marcas";
+    ViewData["Title"] = "Tipos de Unidades";
     string objName = this.ViewContext.RouteData.Values["controller"].ToString();
 }
 
@@ -34,9 +34,9 @@
 @foreach (var item in Model) {
                         <tr>
                             <td>
-                                <a class="btn btn-primary btn-xs" href="/@Html.Raw(objName)/Edit/@Html.Raw(item.MarcaId)" title="Modificar"><span class="glyphicon glyphicon-pencil"> </span></a>
-                                <a class="btn btn-default btn-xs" href="/@Html.Raw(objName)/Details/@Html.Raw(item.MarcaId)" title="Detalles"><span class="glyphicon glyphicon-eye-open"> </span></a>
-                                <a class="btn btn-danger btn-xs" href="/@Html.Raw(objName)/Delete/@Html.Raw(item.MarcaId)" title="Borrar"><span class="glyphicon glyphicon-remove"> </span></a>
+                                <a class="btn btn-primary btn-xs" href="/@Html.Raw(objName)/Edit/@Html.Raw(item.TipoUnidadId)" title="Modificar"><span class="glyphicon glyphicon-pencil"> </span></a>
+                                <a class="btn btn-default btn-xs" href="/@Html.Raw(objName)/Details/@Html.Raw(item.TipoUnidadId)" title="Detalles"><span class="glyphicon glyphicon-eye-open"> </span></a>
+                                <a class="btn btn-danger btn-xs" href="/@Html.Raw(objName)/Delete/@Html.Raw(item.TipoUnidadId)" title="Borrar"><span class="glyphicon glyphicon-remove"> </span></a>
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Detalle)

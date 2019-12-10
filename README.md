@@ -8,14 +8,14 @@ https://gavilanch.wordpress.com/2018/04/28/asp-net-core-2-haciendo-scaffolding-c
 ### Marca:
 
 ```
-dotnet aspnet-codegenerator controller -name MarcaController -actions -outDir Controllers -m SistemaMAV.Models.Marca -dc SistemaMAV.Models.MavDbContext -udl
+dotnet aspnet-codegenerator controller -name TipoUnidadController -actions -outDir Controllers -m SistemaMAV.Entities.Models.TipoUnidad -dc SistemaMAV.DataAccess.Data.MavDbContext -udl
 
 dotnet build
-dotnet aspnet-codegenerator view Create Create -udl -outDir Views/Marca -m SistemaMAV.Models.Marca
-dotnet aspnet-codegenerator view Edit Edit -udl -outDir Views/Marca -m SistemaMAV.Models.Marca
-dotnet aspnet-codegenerator view Delete Delete -udl -outDir Views/Marca -m SistemaMAV.Models.Marca
-dotnet aspnet-codegenerator view List List -udl -outDir Views/Marca -m SistemaMAV.Models.Marca
-dotnet aspnet-codegenerator view Details Details -udl -outDir Views/Marca -m SistemaMAV.Models.Marca
+dotnet aspnet-codegenerator view Create Create -udl -outDir Views/TipoUnidad -m SistemaMAV.Entities.Models.TipoUnidad
+dotnet aspnet-codegenerator view Edit Edit -udl -outDir Views/TipoUnidad -m SistemaMAV.Entities.Models.TipoUnidad
+dotnet aspnet-codegenerator view Delete Delete -udl -outDir Views/TipoUnidad -m SistemaMAV.Entities.Models.TipoUnidad
+dotnet aspnet-codegenerator view List List -udl -outDir Views/TipoUnidad -m SistemaMAV.Entities.Models.TipoUnidad
+dotnet aspnet-codegenerator view Details Details -udl -outDir Views/TipoUnidad -m SistemaMAV.Entities.Models.TipoUnidad
 dotnet build
 ```
 

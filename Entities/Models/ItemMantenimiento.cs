@@ -12,11 +12,9 @@ namespace SistemaMAV.Entities.Models {
         [Column(TypeName = "varchar(100)")]
         public string Detalle { get; set; }
         
-        [Required]
-        public int KilometrosPredeterminado { get; set; }
+        public int? KilometrosPredeterminado { get; set; }
 
-        [Required]
-        public int TiempoPredeterminado { get; set; }
+        public int? TiempoPredeterminado { get; set; }
 
         public ICollection<PlanillaItem> PlanillaItems { get; set; }
     }

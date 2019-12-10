@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using SistemaMAV.Entities.Models;
 
@@ -14,6 +15,8 @@ namespace SistemaMAV.UI.Web.Models {
         
         [Display(Name = "Activa?")]
         public bool Activo { get; set; }
+
+        public ICollection<Modelo> Modelos { get; set; }
 
         public MarcaViewModel() {}
 
