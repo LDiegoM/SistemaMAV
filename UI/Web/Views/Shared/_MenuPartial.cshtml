@@ -1,7 +1,8 @@
 ﻿@if (true) {
 
     string UserFullName = "Invitado"; //SecurityFunctions.GetActualUser(User).FullName;
-
+    string pageName = ViewContext.RouteData.Values["controller"].ToString();
+    bool flgMenuConsultas = (pageName == "Home");
     <!-- Left side column. contains the logo and sidebar -->
     <aside class="main-sidebar">
         <!-- sidebar: style can be found in sidebar.less -->
@@ -19,7 +20,7 @@
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">TAREAS</li>
-                <li class="treeview active">
+                <li class="treeview @(flgMenuConsultas ? "active" : "")">
                     <a href="#">
                         <i class="fa fa-files-o"></i>
                         <span>Consultas</span>
@@ -32,7 +33,7 @@
                         <li class="active"><a href="/Home/ConsultarVehiculo"><i class="fa fa-circle-o"></i> Consultar Vehículo</a></li>
                     </ul>
                 </li>
-                <li class="treeview">
+                <li class='treeview @(!flgMenuConsultas ? "active" : "")'>
                     <a href="#">
                         <i class="fa fa-edit"></i>
                         <span>Administración</span>
@@ -41,12 +42,12 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="active"><a href="/Marca"><i class="fa fa-circle-o"></i> Marcas</a></li>
-                        <li class=""><a href="/TipoUnidad"><i class="fa fa-circle-o"></i> Tipos de Unidades</a></li>
-                        <li class=""><a href="/Modelo"><i class="fa fa-circle-o"></i> Modelos</a></li>
-                        <li class=""><a href="/ItemMantenimiento"><i class="fa fa-circle-o"></i> Items de Mantenimiento</a></li>
-                        <li class=""><a href="/Planilla"><i class="fa fa-circle-o"></i> Planillas de Mantenimiento</a></li>
-                        <li class=""><a href="/PlanillaItem"><i class="fa fa-circle-o"></i> Items de Planillas</a></li>
+                        <li class='@(pageName == "Marca" ? "active" : "")'><a href="/Marca"><i class="fa fa-circle-o"></i> Marcas</a></li>
+                        <li class='@(pageName == "TipoUnidad" ? "active" : "")'><a href="/TipoUnidad"><i class="fa fa-circle-o"></i> Tipos de Unidades</a></li>
+                        <li class='@(pageName == "Modelo" ? "active" : "")'><a href="/Modelo"><i class="fa fa-circle-o"></i> Modelos</a></li>
+                        <li class='@(pageName == "ItemMantenimiento" ? "active" : "")'><a href="/ItemMantenimiento"><i class="fa fa-circle-o"></i> Items de Mantenimiento</a></li>
+                        <li class='@(pageName == "Planilla" ? "active" : "")'><a href="/Planilla"><i class="fa fa-circle-o"></i> Planillas de Mantenimiento</a></li>
+                        <li class='@(pageName == "PlanillaItem" ? "active" : "")'><a href="/PlanillaItem"><i class="fa fa-circle-o"></i> Items de Planillas</a></li>
                     </ul>
                 </li>
 
