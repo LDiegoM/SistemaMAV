@@ -22,18 +22,23 @@ namespace SistemaMAV.UI.Web.Models {
         public ItemMantenimiento ItemMantenimiento { get; set; }
 
         [Display(Name = "Kilómetros")]
+        [DisplayFormat(NullDisplayText = ".")]
         public int? Kilometros { get; set; }
 
         [Display(Name = "Meses")]
+        [DisplayFormat(NullDisplayText = ".")]
         public int? Meses { get; set; }
 
         [Display(Name = "Recomendaciones")]
+        [DisplayFormat(NullDisplayText = ".")]
         public string Recomendaciones { get; set; }
 
         [Display(Name = "Observaciones")]
+        [DisplayFormat(NullDisplayText = ".")]
         public string Observaciones { get; set; }
 
         [Display(Name = "Info. Extra")]
+        [DisplayFormat(NullDisplayText = ".")]
         public string InfoExtra { get; set; }
 
         public PlanillaItemViewModel() {}
