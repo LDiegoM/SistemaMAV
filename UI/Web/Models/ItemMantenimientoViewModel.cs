@@ -14,9 +14,11 @@ namespace SistemaMAV.UI.Web.Models {
         public string Detalle { get; set; }
         
         [Display(Name = "Km. predeterminados")]
+        [DisplayFormat(NullDisplayText = ".")]
         public int? KilometrosPredeterminado { get; set; }
 
         [Display(Name = "Tiempo pred. (meses)")]
+        [DisplayFormat(NullDisplayText = ".")]
         public int? TiempoPredeterminado { get; set; }
 
         [Display(Name = "Planillas de Mantenimiento")]
