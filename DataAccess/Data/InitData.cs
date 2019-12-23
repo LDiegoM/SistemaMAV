@@ -41,7 +41,7 @@ namespace SistemaMAV.DataAccess.Data {
                         Activo = true
                     }
                 );
-
+                /*
                 context.ItemMantenimiento.AddRange(
                     new ItemMantenimiento {
                         Detalle = "Cambio de aceite",
@@ -54,7 +54,7 @@ namespace SistemaMAV.DataAccess.Data {
                         KilometrosPredeterminado = 50000
                     }
                 );
-
+                */
                 context.SaveChanges();
             }
         }
