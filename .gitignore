@@ -8,4 +8,5 @@ DataAccess/bin
 DataAccess/obj
 Entities/bin
 Entities/obj
-.vscode/settings.json
+.vscode
+.vs
