@@ -1,0 +1,97 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    string userName = "Invitado"; //SecurityFunctions.GetActualUser(User).FullName;
+    string userFullName = "Usuario invitado";
+    string pageName = "Home";
+    if (ViewContext.RouteData.Values["controller"] != null)
+        pageName = ViewContext.RouteData.Values["controller"].ToString()??pageName;
+
+
+    bool flgAdminRole = false;
+    bool flgUserLogedIn = false;
+    bool flgMenuConsultas = (pageName == "Home" || pageName == "Consultar" || pageName == "Propiedad" || pageName == "Manage" || pageName == "Account");
+
+    @if (SignInManager.IsSignedIn(User)) {
+            userName = User.Identity?.Name??userName;
+            userFullName = "";
+
+            IdentityUser? user = await UserManager.FindByNameAsync(userName);
+            if (user != null) {
+                flgUserLogedIn = true;
+
+                string[] roles = UserManager.GetRolesAsync(user).Result.ToArray();
+                foreach (string role in roles) {
+                    if (role.Equals("Administrador"))
+                        flgAdminRole = true;
+                }
+            }
+        }
+}
+
+@if (true)
+{
+
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+            <!-- Sidebar user panel -->
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="~/img/user.png" class="img-circle" alt="User Image">
+                </div>
+                <div class="pull-left info">
+                    <p>@userName</p>
+                    <p><small>@userFullName</small></p>
+                </div>
+            </div>
+            <!-- sidebar menu: : style can be found in sidebar.less -->
+            <ul class="sidebar-menu" data-widget="tree">
+                <li class="header">TAREAS</li>
+                <li class="treeview @(flgMenuConsultas ? "active" : "")">
+                    <a href="#">
+                        <i class="fa fa-files-o"></i>
+                        <span>Consultas</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="active"><a href="/"><i class="fa fa-circle-o"></i> Inicio</a></li>
+                        <li class="active"><a href="/Consultar"><i class="fa fa-circle-o"></i> Consultar Vehículo</a></li>
+                        @if (flgUserLogedIn && !flgAdminRole)
+                        {
+                            <li class="active"><a href="/Propiedad"><i class="fa fa-circle-o"></i> Mis Vehículos</a></li>
+                        }
+                    </ul>
+                </li>
+                @if (flgAdminRole)
+                {
+                <li class='treeview @(!flgMenuConsultas ? "active" : "")'>
+                    <a href="#">
+                        <i class="fa fa-edit"></i>
+                        <span>Administración</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class='@(pageName == "Marca" ? "active" : "")'><a href="/Marca"><i class="fa fa-circle-o"></i> Marcas</a></li>
+                        <li class='@(pageName == "TipoUnidad" ? "active" : "")'><a href="/TipoUnidad"><i class="fa fa-circle-o"></i> Tipos de Unidades</a></li>
+                        <li class='@(pageName == "Modelo" ? "active" : "")'><a href="/Modelo"><i class="fa fa-circle-o"></i> Modelos</a></li>
+                        <li class='@(pageName == "ItemMantenimiento" ? "active" : "")'><a href="/ItemMantenimiento"><i class="fa fa-circle-o"></i> Items de Mantenimiento</a></li>
+                        <li class='@(pageName == "Planilla" ? "active" : "")'><a href="/Planilla"><i class="fa fa-circle-o"></i> Planillas de Mantenimiento</a></li>
+                        <li class='@(pageName == "PlanillaItem" ? "active" : "")'><a href="/PlanillaItem"><i class="fa fa-circle-o"></i> Items de Planillas</a></li>
+                    </ul>
+                </li>
+                }
+                <!--<li class="header">MENSAJES</li>-->
+                <!--<li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Pasaje realizado <i class="pull-right">10:00 AM</i></span></a></li>-->
+            </ul>
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+}
