@@ -1,0 +1,75 @@
+@model PlanillaItemViewModel
+
+@{
+    ViewData["Title"] = "Eliminar el Item de Planilla de Mantenimiento " + Model.Planilla.Detalle + " - " + Model.ItemMantenimiento.Detalle;
+    string objName = this.ViewContext.RouteData.Values["controller"].ToString();
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box box-primary">
+            <div class="box-header">
+                <h3 class="box-title">@ViewBag.Title</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+
+                <h4>Confirma eliminar el ítem?</h4>
+                <div>
+                    <dl class="row">
+                        <dt class = "col-sm-2">
+                            @Html.DisplayNameFor(model => model.Planilla)
+                        </dt>
+                        <dd class = "col-sm-10">
+                            @Html.DisplayFor(model => model.Planilla.Detalle)
+                        </dd class>
+                        <dt class = "col-sm-2">
+                            @Html.DisplayNameFor(model => model.ItemMantenimiento)
+                        </dt>
+                        <dd class = "col-sm-10">
+                            @Html.DisplayFor(model => model.ItemMantenimiento.Detalle)
+                        </dd class>
+                        <dt class = "col-sm-2">
+                            @Html.DisplayNameFor(model => model.Kilometros)
+                        </dt>
+                        <dd class = "col-sm-10">
+                            @Html.DisplayFor(model => model.Kilometros)
+                        </dd>
+                        <dt class = "col-sm-2">
+                            @Html.DisplayNameFor(model => model.Meses)
+                        </dt>
+                        <dd class = "col-sm-10">
+                            @Html.DisplayFor(model => model.Meses)
+                        </dd>
+                        <dt class = "col-sm-2">
+                            @Html.DisplayNameFor(model => model.Recomendaciones)
+                        </dt>
+                        <dd class = "col-sm-10">
+                            @Html.DisplayFor(model => model.Recomendaciones)
+                        </dd>
+                        <dt class = "col-sm-2">
+                            @Html.DisplayNameFor(model => model.Observaciones)
+                        </dt>
+                        <dd class = "col-sm-10">
+                            @Html.DisplayFor(model => model.Observaciones)
+                        </dd>
+                        <dt class = "col-sm-2">
+                            @Html.DisplayNameFor(model => model.InfoExtra)
+                        </dt>
+                        <dd class = "col-sm-10">
+                            @Html.DisplayFor(model => model.InfoExtra)
+                        </dd>
+                    </dl>
+    
+                    <form asp-action="Delete">
+                        <input type="hidden" asp-for="PlanillaItemId" />
+                        <div class="form-actions no-color">
+                            <a class="btn btn-default" href="/@Html.Raw(objName)/Index" title="Volver"><span class="glyphicon glyphicon-arrow-left" style="margin-right: 5px;"></span>Volver</a>
+                            <input type="submit" value="Eliminar" class="btn btn-danger" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
