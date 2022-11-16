@@ -24,8 +24,8 @@ public class ModeloController : Controller {
         List<Modelo> modelos = await _context.Modelo.ToListAsync();
         List<ModeloViewModel> modelosVM = new List<ModeloViewModel>();
         foreach(Modelo unModelo in modelos) {
-            unModelo.Marca = await _context.Marca.FirstOrDefaultAsync<Marca>(m => m.MarcaId == unModelo.MarcaId);
-            unModelo.TipoUnidad = await _context.TipoUnidad.FirstOrDefaultAsync(t => t.TipoUnidadId == unModelo.TipoUnidadId);
+            unModelo.Marca = await _context.Marca.FirstOrDefaultAsync<Marca>(m => m.MarcaId == unModelo.MarcaId)??new Marca();
+            unModelo.TipoUnidad = await _context.TipoUnidad.FirstOrDefaultAsync(t => t.TipoUnidadId == unModelo.TipoUnidadId)??new TipoUnidad();
             modelosVM.Add(new ModeloViewModel(unModelo));
         }
         return View(modelosVM);
@@ -138,6 +138,8 @@ public class ModeloController : Controller {
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(int id) {
         var modelo = await _context.Modelo.FindAsync(id);
+        if (modelo == null)
+            return NotFound();
         _context.Modelo.Remove(modelo);
         await _context.SaveChangesAsync();
         return RedirectToAction(nameof(Index));
