@@ -126,6 +126,8 @@ public class ManageController : Controller
         if (user != null)
         {
             var codes = await _userManager.GenerateNewTwoFactorRecoveryCodesAsync(user, 5);
+            if (codes == null)
+                return View("Error");
             _logger.LogInformation(1, "User generated new recovery code.");
             return View("DisplayRecoveryCodes", new DisplayRecoveryCodesViewModel { Codes = codes });
         }

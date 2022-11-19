@@ -1,4 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity
+@using SistemaMAV.Web.ViewModels.Manage
+
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
@@ -9,12 +11,14 @@
     string userName = "";
     string email = "";
     IdentityUser user = null;
-    if (User.Identity != null) {
-        userName = User.Identity.Name??"";
+    if (User.Identity != null)
+    {
+        userName = User.Identity.Name ?? "";
         user = await UserManager.FindByNameAsync(userName);
     }
-    if (user != null) {
-        email = user.Email??"";
+    if (user != null)
+    {
+        email = user.Email ?? "";
     }
 }
 

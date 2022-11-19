@@ -1,0 +1,137 @@
+@model SistemaMAV.Web.ViewModels.Consultar.IndexViewModel
+
+@{
+    ViewData["Title"] = "Consultar Vehículo";
+    string objName = this.ViewContext.RouteData.Values["controller"].ToString();
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box box-default @(Model.MostrarResultados==true ? "collapsed-box" : "")" style="border: solid 1px lightblue;">
+            <div class="box-header">
+                <h3 class="box-title">Vehículo buscado</h3>
+                <div class="box-tools pull-right">
+                    @if (!Model.MostrarResultados)
+                    {
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                    }
+                    else
+                    {
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <i class="fa fa-plus"></i>
+                        </button>
+                    }
+                </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+
+                <form asp-action="Index">
+                    <div class="form-horizontal">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label asp-for="FiltroMarca" class="control-label col-md-2"></label>
+                                    <div class="col-md-4">
+                                        @Html.DropDownList("FiltroMarca", Model.FiltroMarca, new { @class = "form-control select2", @style = "width: 100%;" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label asp-for="FiltroTipoUnidad" class="control-label col-md-2"></label>
+                                    <div class="col-md-4">
+                                        @Html.DropDownList("FiltroTipoUnidad", Model.FiltroTipoUnidad, new { @class = "form-control select2", @style = "width: 100%;" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label asp-for="FiltroModelo" class="control-label col-md-2"></label>
+                                    <div class="col-md-10">
+                                        <input asp-for="FiltroModelo" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label asp-for="FiltroAnioFabricacion" class="control-label col-md-2"></label>
+                                    <div class="col-md-4">
+                                        <input asp-for="FiltroAnioFabricacion" class="form-control" />
+                                        <span asp-validation-for="FiltroAnioFabricacion" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Aplicar filtros" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (Model.MostrarResultados) {
+    @Html.Raw(References.GetReferences_DataTables())
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box box-primary">
+            <div class="box-header">
+                <h3 class="box-title">Resultados</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <table id="grd" class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>
+                                Vehículo
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (SistemaMAV.Web.ViewModels.Consultar.IndexItemConsulta item in Model.Items)
+                        {
+                            <tr>
+                                <td>
+                                    <a class="btn btn-default btn-xs" href="/@Html.Raw(objName)/Items/@Html.Raw(item.PlanillaId)" title="Detalles"><span class="glyphicon glyphicon-eye-open"> </span></a>
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Detalle)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        initDataGrid("grd");
+    });
+</script>
+}
+
+<script>
+    $(document).ready(function () {
+        $("#FiltroMarca").select2();
+        $("#FiltroTipoUnidad").select2();
+    });
+</script>

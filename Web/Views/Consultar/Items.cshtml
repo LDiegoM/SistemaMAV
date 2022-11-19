@@ -1,0 +1,61 @@
+﻿@model SistemaMAV.Web.ViewModels.Consultar.ItemsViewModel
+
+@{
+    ViewData["Title"] = "Mantenimiento de " + Model.Planilla.Modelo.Detalle + " " + Model.Planilla.AnioFabricacion.ToString();
+    string objName = this.ViewContext.RouteData.Values["controller"].ToString();
+}
+
+@Html.Raw(References.GetReferences_DataTables())
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box box-primary">
+            <div class="box-header">
+                <h3 class="box-title">Resultados</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <table id="grd" class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Item de Mantenimiento</th>
+                            <th>Kilómetros</th>
+                            <th>Meses</th>
+                            <th>Recomendaciones</th>
+                            <th>Observaciones</th>
+                            <th>Info. Extra</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (PlanillaItemViewModel item in Model.Items)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ItemMantenimiento.Detalle)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Kilometros)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Meses)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Recomendaciones)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Observaciones)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.InfoExtra)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script>$(document).ready(function () {
+        initDataGrid("grd", 0);
+    });</script>
