@@ -29,6 +29,7 @@ El autor de este protipo y del Sistema MAV es Diego M. Lopez (ldiegom@gmail.com)
 ### En desarrollo
 
 - Agrega la vista de consulta de vehículos
+- Agrega información a la página de inicio
 
 ### 0.0.1 - 2022-11-14
 
