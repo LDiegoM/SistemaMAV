@@ -30,6 +30,7 @@ El autor de este protipo y del Sistema MAV es Diego M. Lopez (ldiegom@gmail.com)
 
 - Agrega la vista de consulta de vehículos
 - Agrega información a la página de inicio
+- Agregado de tablas adicionales y viewModels para carga de mantenimientos
 
 ### 0.0.1 - 2022-11-14
 

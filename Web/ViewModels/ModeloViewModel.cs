@@ -34,8 +34,11 @@ public class ModeloViewModel {
     public DateTime? FechaBaja { get; set; }
 
     public ICollection<Planilla>? Planillas { get; set; }
+    public ICollection<Propietario>? Propietarios { get; set; }
 
-    public ModeloViewModel() {}
+    public ModeloViewModel() {
+        Detalle = "";
+    }
 
     public ModeloViewModel(Modelo modelo) {
         ModeloId = modelo.ModeloId;

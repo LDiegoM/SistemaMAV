@@ -86,7 +86,8 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
         );
 
         builder.Entity<Planilla>().HasData(
-            new Planilla { PlanillaId = 1, ModeloId = 1, Detalle = "Chevrolet Agile", AnioFabricacion = 2015, Version = 1, Activo = true }
+            new Planilla { PlanillaId = 1, ModeloId = 1, Detalle = "Chevrolet Agile", AnioFabricacion = 2015, Version = 1, Activo = true },
+            new Planilla { PlanillaId = 2, ModeloId = 2, Detalle = "Ford Fiesta Kinetic Design", AnioFabricacion = 2018, Version = 1, Activo = true }
         );
 
         builder.Entity<PlanillaItem>().HasData(
@@ -109,6 +110,14 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
             new PlanillaItem { PlanillaItemId = 17, PlanillaId = 1, ItemMantenimientoId = 17, Kilometros = 10000, Recomendaciones = "Gas R134a", InfoExtra = "Controlar en cada inspección. No requiere sustitución, excepto que haya fuga." },
             new PlanillaItem { PlanillaItemId = 18, PlanillaId = 1, ItemMantenimientoId = 18, Recomendaciones = "Inspeccionar el nivel de líquido refrigerante mensualmente.", InfoExtra = "Cambiar el líquido refrigerante y reparar posibles fugas. Antes de cambiar se recomienda limpiar el sistema de refrigeración." }
         );
+
+        builder.Entity<Localidad>().HasData(
+            new Localidad { LocalidadId = 1, Nombre = "Buenos Aires - CABA" },
+            new Localidad { LocalidadId = 2, Nombre = "Buenos Aires - Zona Norte - Vicente Lopez" },
+            new Localidad { LocalidadId = 3, Nombre = "Buenos Aires - Zona Norte - San Isidro" },
+            new Localidad { LocalidadId = 4, Nombre = "Buenos Aires - Zona Norte - Tigre" },
+            new Localidad { LocalidadId = 5, Nombre = "Buenos Aires - Zona Norte" }
+        );
     }
 
     public DbSet<Marca>? Marca { get; set; }
@@ -117,4 +126,12 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     public DbSet<ItemMantenimiento>? ItemMantenimiento { get; set; }
     public DbSet<Planilla>? Planilla { get; set; }
     public DbSet<PlanillaItem>? PlanillaItem { get; set; }
+
+    public DbSet<Propietario>? Propietario { get; set; }
+    public DbSet<Localidad>? Localidad { get; set; }
+    public DbSet<Proveedor>? Proveedor { get; set; }
+    public DbSet<Taller>? Taller { get; set; }
+    public DbSet<Stock>? Stock { get; set; }
+    public DbSet<Mantenimiento>? Mantenimiento { get; set; }
+    public DbSet<MantenimientoItem>? MantenimientoItem { get; set; }
 }

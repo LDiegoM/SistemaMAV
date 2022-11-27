@@ -19,7 +19,9 @@ public class MarcaViewModel {
 
     public ICollection<Modelo>? Modelos { get; set; }
 
-    public MarcaViewModel() { }
+    public MarcaViewModel() {
+        Detalle = "";
+     }
 
     public MarcaViewModel(Marca marca) {
         MarcaId = marca.MarcaId;

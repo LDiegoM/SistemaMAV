@@ -68,6 +68,19 @@ namespace Web.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Localidad",
+                columns: table => new
+                {
+                    LocalidadId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Nombre = table.Column<string>(type: "varchar(250)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Localidad", x => x.LocalidadId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Marca",
                 columns: table => new
                 {
@@ -202,6 +215,60 @@ namespace Web.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Proveedor",
+                columns: table => new
+                {
+                    ProveedorId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Nombre = table.Column<string>(type: "varchar(250)", nullable: false),
+                    AnioApertura = table.Column<int>(type: "INTEGER", nullable: false),
+                    Direccion = table.Column<string>(type: "varchar(300)", nullable: false),
+                    LocalidadId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Telefono = table.Column<string>(type: "varchar(50)", nullable: false),
+                    Email = table.Column<string>(type: "varchar(100)", nullable: false),
+                    Activo = table.Column<bool>(type: "bit", nullable: false),
+                    VotosPositivos = table.Column<int>(type: "INTEGER", nullable: false),
+                    VotosNegativos = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Proveedor", x => x.ProveedorId);
+                    table.ForeignKey(
+                        name: "FK_Proveedor_Localidad_LocalidadId",
+                        column: x => x.LocalidadId,
+                        principalTable: "Localidad",
+                        principalColumn: "LocalidadId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Taller",
+                columns: table => new
+                {
+                    TallerId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Nombre = table.Column<string>(type: "varchar(250)", nullable: false),
+                    AnioApertura = table.Column<int>(type: "INTEGER", nullable: false),
+                    Direccion = table.Column<string>(type: "varchar(300)", nullable: false),
+                    LocalidadId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Telefono = table.Column<string>(type: "varchar(50)", nullable: false),
+                    Email = table.Column<string>(type: "varchar(100)", nullable: false),
+                    Activo = table.Column<bool>(type: "bit", nullable: false),
+                    VotosPositivos = table.Column<int>(type: "INTEGER", nullable: false),
+                    VotosNegativos = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Taller", x => x.TallerId);
+                    table.ForeignKey(
+                        name: "FK_Taller_Localidad_LocalidadId",
+                        column: x => x.LocalidadId,
+                        principalTable: "Localidad",
+                        principalColumn: "LocalidadId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Modelo",
                 columns: table => new
                 {
@@ -231,6 +298,34 @@ namespace Web.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Stock",
+                columns: table => new
+                {
+                    StockId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ItemMantenimientoId = table.Column<int>(type: "INTEGER", nullable: false),
+                    ProveedorId = table.Column<int>(type: "INTEGER", nullable: false),
+                    CantidadEnStock = table.Column<int>(type: "INTEGER", nullable: false),
+                    PrecioVenta = table.Column<double>(type: "REAL", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Stock", x => x.StockId);
+                    table.ForeignKey(
+                        name: "FK_Stock_ItemMantenimiento_ItemMantenimientoId",
+                        column: x => x.ItemMantenimientoId,
+                        principalTable: "ItemMantenimiento",
+                        principalColumn: "ItemMantenimientoId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Stock_Proveedor_ProveedorId",
+                        column: x => x.ProveedorId,
+                        principalTable: "Proveedor",
+                        principalColumn: "ProveedorId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Planilla",
                 columns: table => new
                 {
@@ -247,6 +342,30 @@ namespace Web.Migrations
                     table.PrimaryKey("PK_Planilla", x => x.PlanillaId);
                     table.ForeignKey(
                         name: "FK_Planilla_Modelo_ModeloId",
+                        column: x => x.ModeloId,
+                        principalTable: "Modelo",
+                        principalColumn: "ModeloId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Propietario",
+                columns: table => new
+                {
+                    PropietarioId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    UserId = table.Column<string>(type: "varchar(50)", nullable: false),
+                    ModeloId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Patente = table.Column<string>(type: "TEXT", nullable: false),
+                    AnioFabricacion = table.Column<int>(type: "INTEGER", nullable: false),
+                    FechaAlta = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Activo = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Propietario", x => x.PropietarioId);
+                    table.ForeignKey(
+                        name: "FK_Propietario_Modelo_ModeloId",
                         column: x => x.ModeloId,
                         principalTable: "Modelo",
                         principalColumn: "ModeloId",
@@ -278,6 +397,76 @@ namespace Web.Migrations
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_PlanillaItem_Planilla_PlanillaId",
+                        column: x => x.PlanillaId,
+                        principalTable: "Planilla",
+                        principalColumn: "PlanillaId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Mantenimiento",
+                columns: table => new
+                {
+                    MantenimientoId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    PropietarioId = table.Column<int>(type: "INTEGER", nullable: false),
+                    TallerId = table.Column<int>(type: "INTEGER", nullable: false),
+                    PlanillaId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Fecha = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Kilometros = table.Column<int>(type: "INTEGER", nullable: false),
+                    Precio = table.Column<float>(type: "REAL", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Mantenimiento", x => x.MantenimientoId);
+                    table.ForeignKey(
+                        name: "FK_Mantenimiento_Planilla_PlanillaId",
+                        column: x => x.PlanillaId,
+                        principalTable: "Planilla",
+                        principalColumn: "PlanillaId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Mantenimiento_Propietario_PropietarioId",
+                        column: x => x.PropietarioId,
+                        principalTable: "Propietario",
+                        principalColumn: "PropietarioId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Mantenimiento_Taller_TallerId",
+                        column: x => x.TallerId,
+                        principalTable: "Taller",
+                        principalColumn: "TallerId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MantenimientoItem",
+                columns: table => new
+                {
+                    MantenimientoItemId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    MantenimientoId = table.Column<int>(type: "INTEGER", nullable: false),
+                    PlanillaId = table.Column<int>(type: "INTEGER", nullable: false),
+                    PlanillaItemId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Reemplazo = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MantenimientoItem", x => x.MantenimientoItemId);
+                    table.ForeignKey(
+                        name: "FK_MantenimientoItem_Mantenimiento_MantenimientoId",
+                        column: x => x.MantenimientoId,
+                        principalTable: "Mantenimiento",
+                        principalColumn: "MantenimientoId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_MantenimientoItem_PlanillaItem_PlanillaItemId",
+                        column: x => x.PlanillaItemId,
+                        principalTable: "PlanillaItem",
+                        principalColumn: "PlanillaItemId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_MantenimientoItem_Planilla_PlanillaId",
                         column: x => x.PlanillaId,
                         principalTable: "Planilla",
                         principalColumn: "PlanillaId",
@@ -324,6 +513,18 @@ namespace Web.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Localidad",
+                columns: new[] { "LocalidadId", "Nombre" },
+                values: new object[,]
+                {
+                    { 1, "Buenos Aires - CABA" },
+                    { 2, "Buenos Aires - Zona Norte - Vicente Lopez" },
+                    { 3, "Buenos Aires - Zona Norte - San Isidro" },
+                    { 4, "Buenos Aires - Zona Norte - Tigre" },
+                    { 5, "Buenos Aires - Zona Norte" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Marca",
                 columns: new[] { "MarcaId", "Activo", "Detalle" },
                 values: new object[,]
@@ -359,7 +560,11 @@ namespace Web.Migrations
             migrationBuilder.InsertData(
                 table: "Planilla",
                 columns: new[] { "PlanillaId", "Activo", "AnioFabricacion", "Detalle", "ModeloId", "Version" },
-                values: new object[] { 1, true, 2015, "Chevrolet Agile", 1, 1 });
+                values: new object[,]
+                {
+                    { 1, true, 2015, "Chevrolet Agile", 1, 1 },
+                    { 2, true, 2018, "Ford Fiesta Kinetic Design", 2, 1 }
+                });
 
             migrationBuilder.InsertData(
                 table: "PlanillaItem",
@@ -424,6 +629,36 @@ namespace Web.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Mantenimiento_PlanillaId",
+                table: "Mantenimiento",
+                column: "PlanillaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Mantenimiento_PropietarioId",
+                table: "Mantenimiento",
+                column: "PropietarioId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Mantenimiento_TallerId",
+                table: "Mantenimiento",
+                column: "TallerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MantenimientoItem_MantenimientoId",
+                table: "MantenimientoItem",
+                column: "MantenimientoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MantenimientoItem_PlanillaId",
+                table: "MantenimientoItem",
+                column: "PlanillaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MantenimientoItem_PlanillaItemId",
+                table: "MantenimientoItem",
+                column: "PlanillaItemId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Modelo_MarcaId",
                 table: "Modelo",
                 column: "MarcaId");
@@ -447,6 +682,31 @@ namespace Web.Migrations
                 name: "IX_PlanillaItem_PlanillaId",
                 table: "PlanillaItem",
                 column: "PlanillaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Propietario_ModeloId",
+                table: "Propietario",
+                column: "ModeloId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Proveedor_LocalidadId",
+                table: "Proveedor",
+                column: "LocalidadId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Stock_ItemMantenimientoId",
+                table: "Stock",
+                column: "ItemMantenimientoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Stock_ProveedorId",
+                table: "Stock",
+                column: "ProveedorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Taller_LocalidadId",
+                table: "Taller",
+                column: "LocalidadId");
         }
 
         /// <inheritdoc />
@@ -468,7 +728,10 @@ namespace Web.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "PlanillaItem");
+                name: "MantenimientoItem");
+
+            migrationBuilder.DropTable(
+                name: "Stock");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -477,10 +740,28 @@ namespace Web.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
+                name: "Mantenimiento");
+
+            migrationBuilder.DropTable(
+                name: "PlanillaItem");
+
+            migrationBuilder.DropTable(
+                name: "Proveedor");
+
+            migrationBuilder.DropTable(
+                name: "Propietario");
+
+            migrationBuilder.DropTable(
+                name: "Taller");
+
+            migrationBuilder.DropTable(
                 name: "ItemMantenimiento");
 
             migrationBuilder.DropTable(
                 name: "Planilla");
+
+            migrationBuilder.DropTable(
+                name: "Localidad");
 
             migrationBuilder.DropTable(
                 name: "Modelo");

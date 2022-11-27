@@ -25,7 +25,12 @@ public class ItemMantenimientoViewModel {
     [Display(Name = "Planillas de Mantenimiento")]
     public ICollection<PlanillaItem>? PlanillaItems { get; set; }
 
-    public ItemMantenimientoViewModel() {}
+    [Display(Name = "Stock de vendedores")]
+    public ICollection<Stock>? Stock { get; set; }
+
+    public ItemMantenimientoViewModel() {
+        Detalle = "";
+    }
 
     public ItemMantenimientoViewModel(ItemMantenimiento itemMantenimiento) {
         ItemMantenimientoId = itemMantenimiento.ItemMantenimientoId;
