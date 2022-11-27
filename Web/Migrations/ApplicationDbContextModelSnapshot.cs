@@ -382,6 +382,112 @@ namespace Web.Migrations
                         });
                 });
 
+            modelBuilder.Entity("SistemaMAV.Entities.Models.Localidad", b =>
+                {
+                    b.Property<int>("LocalidadId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("varchar(250)");
+
+                    b.HasKey("LocalidadId");
+
+                    b.ToTable("Localidad");
+
+                    b.HasData(
+                        new
+                        {
+                            LocalidadId = 1,
+                            Nombre = "Buenos Aires - CABA"
+                        },
+                        new
+                        {
+                            LocalidadId = 2,
+                            Nombre = "Buenos Aires - Zona Norte - Vicente Lopez"
+                        },
+                        new
+                        {
+                            LocalidadId = 3,
+                            Nombre = "Buenos Aires - Zona Norte - San Isidro"
+                        },
+                        new
+                        {
+                            LocalidadId = 4,
+                            Nombre = "Buenos Aires - Zona Norte - Tigre"
+                        },
+                        new
+                        {
+                            LocalidadId = 5,
+                            Nombre = "Buenos Aires - Zona Norte"
+                        });
+                });
+
+            modelBuilder.Entity("SistemaMAV.Entities.Models.Mantenimiento", b =>
+                {
+                    b.Property<int>("MantenimientoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Kilometros")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("PlanillaId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<float>("Precio")
+                        .HasColumnType("REAL");
+
+                    b.Property<int>("PropietarioId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("TallerId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("MantenimientoId");
+
+                    b.HasIndex("PlanillaId");
+
+                    b.HasIndex("PropietarioId");
+
+                    b.HasIndex("TallerId");
+
+                    b.ToTable("Mantenimiento");
+                });
+
+            modelBuilder.Entity("SistemaMAV.Entities.Models.MantenimientoItem", b =>
+                {
+                    b.Property<int>("MantenimientoItemId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("MantenimientoId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("PlanillaId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("PlanillaItemId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("Reemplazo")
+                        .HasColumnType("bit");
+
+                    b.HasKey("MantenimientoItemId");
+
+                    b.HasIndex("MantenimientoId");
+
+                    b.HasIndex("PlanillaId");
+
+                    b.HasIndex("PlanillaItemId");
+
+                    b.ToTable("MantenimientoItem");
+                });
+
             modelBuilder.Entity("SistemaMAV.Entities.Models.Marca", b =>
                 {
                     b.Property<int>("MarcaId")
@@ -499,6 +605,15 @@ namespace Web.Migrations
                             AnioFabricacion = 2015,
                             Detalle = "Chevrolet Agile",
                             ModeloId = 1,
+                            Version = 1
+                        },
+                        new
+                        {
+                            PlanillaId = 2,
+                            Activo = true,
+                            AnioFabricacion = 2018,
+                            Detalle = "Ford Fiesta Kinetic Design",
+                            ModeloId = 2,
                             Version = 1
                         });
                 });
@@ -693,6 +808,154 @@ namespace Web.Migrations
                         });
                 });
 
+            modelBuilder.Entity("SistemaMAV.Entities.Models.Propietario", b =>
+                {
+                    b.Property<int>("PropietarioId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("Activo")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("AnioFabricacion")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("FechaAlta")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("ModeloId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Patente")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.HasKey("PropietarioId");
+
+                    b.HasIndex("ModeloId");
+
+                    b.ToTable("Propietario");
+                });
+
+            modelBuilder.Entity("SistemaMAV.Entities.Models.Proveedor", b =>
+                {
+                    b.Property<int>("ProveedorId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("Activo")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("AnioApertura")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Direccion")
+                        .IsRequired()
+                        .HasColumnType("varchar(300)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<int>("LocalidadId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("varchar(250)");
+
+                    b.Property<string>("Telefono")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<int>("VotosNegativos")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("VotosPositivos")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("ProveedorId");
+
+                    b.HasIndex("LocalidadId");
+
+                    b.ToTable("Proveedor");
+                });
+
+            modelBuilder.Entity("SistemaMAV.Entities.Models.Stock", b =>
+                {
+                    b.Property<int>("StockId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("CantidadEnStock")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ItemMantenimientoId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<double>("PrecioVenta")
+                        .HasColumnType("REAL");
+
+                    b.Property<int>("ProveedorId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("StockId");
+
+                    b.HasIndex("ItemMantenimientoId");
+
+                    b.HasIndex("ProveedorId");
+
+                    b.ToTable("Stock");
+                });
+
+            modelBuilder.Entity("SistemaMAV.Entities.Models.Taller", b =>
+                {
+                    b.Property<int>("TallerId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("Activo")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("AnioApertura")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Direccion")
+                        .IsRequired()
+                        .HasColumnType("varchar(300)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<int>("LocalidadId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("varchar(250)");
+
+                    b.Property<string>("Telefono")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<int>("VotosNegativos")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("VotosPositivos")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("TallerId");
+
+                    b.HasIndex("LocalidadId");
+
+                    b.ToTable("Taller");
+                });
+
             modelBuilder.Entity("SistemaMAV.Entities.Models.TipoUnidad", b =>
                 {
                     b.Property<int>("TipoUnidadId")
@@ -782,6 +1045,60 @@ namespace Web.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("SistemaMAV.Entities.Models.Mantenimiento", b =>
+                {
+                    b.HasOne("SistemaMAV.Entities.Models.Planilla", "Planilla")
+                        .WithMany("Mantenimientos")
+                        .HasForeignKey("PlanillaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SistemaMAV.Entities.Models.Propietario", "Propietario")
+                        .WithMany("Mantenimientos")
+                        .HasForeignKey("PropietarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SistemaMAV.Entities.Models.Taller", "Taller")
+                        .WithMany("Mantenimientos")
+                        .HasForeignKey("TallerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Planilla");
+
+                    b.Navigation("Propietario");
+
+                    b.Navigation("Taller");
+                });
+
+            modelBuilder.Entity("SistemaMAV.Entities.Models.MantenimientoItem", b =>
+                {
+                    b.HasOne("SistemaMAV.Entities.Models.Mantenimiento", "Mantenimiento")
+                        .WithMany("MantenimientoItems")
+                        .HasForeignKey("MantenimientoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SistemaMAV.Entities.Models.Planilla", "Planilla")
+                        .WithMany("MantenimientoItems")
+                        .HasForeignKey("PlanillaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SistemaMAV.Entities.Models.PlanillaItem", "PlanillaItem")
+                        .WithMany("MantenimientoItems")
+                        .HasForeignKey("PlanillaItemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Mantenimiento");
+
+                    b.Navigation("Planilla");
+
+                    b.Navigation("PlanillaItem");
+                });
+
             modelBuilder.Entity("SistemaMAV.Entities.Models.Modelo", b =>
                 {
                     b.HasOne("SistemaMAV.Entities.Models.Marca", "Marca")
@@ -831,9 +1148,75 @@ namespace Web.Migrations
                     b.Navigation("Planilla");
                 });
 
+            modelBuilder.Entity("SistemaMAV.Entities.Models.Propietario", b =>
+                {
+                    b.HasOne("SistemaMAV.Entities.Models.Modelo", "Modelo")
+                        .WithMany("Propietarios")
+                        .HasForeignKey("ModeloId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Modelo");
+                });
+
+            modelBuilder.Entity("SistemaMAV.Entities.Models.Proveedor", b =>
+                {
+                    b.HasOne("SistemaMAV.Entities.Models.Localidad", "Localidad")
+                        .WithMany("Proveedores")
+                        .HasForeignKey("LocalidadId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Localidad");
+                });
+
+            modelBuilder.Entity("SistemaMAV.Entities.Models.Stock", b =>
+                {
+                    b.HasOne("SistemaMAV.Entities.Models.ItemMantenimiento", "ItemMantenimiento")
+                        .WithMany("Stock")
+                        .HasForeignKey("ItemMantenimientoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SistemaMAV.Entities.Models.Proveedor", "Proveedor")
+                        .WithMany("Stock")
+                        .HasForeignKey("ProveedorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ItemMantenimiento");
+
+                    b.Navigation("Proveedor");
+                });
+
+            modelBuilder.Entity("SistemaMAV.Entities.Models.Taller", b =>
+                {
+                    b.HasOne("SistemaMAV.Entities.Models.Localidad", "Localidad")
+                        .WithMany("Talleres")
+                        .HasForeignKey("LocalidadId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Localidad");
+                });
+
             modelBuilder.Entity("SistemaMAV.Entities.Models.ItemMantenimiento", b =>
                 {
                     b.Navigation("PlanillaItems");
+
+                    b.Navigation("Stock");
+                });
+
+            modelBuilder.Entity("SistemaMAV.Entities.Models.Localidad", b =>
+                {
+                    b.Navigation("Proveedores");
+
+                    b.Navigation("Talleres");
+                });
+
+            modelBuilder.Entity("SistemaMAV.Entities.Models.Mantenimiento", b =>
+                {
+                    b.Navigation("MantenimientoItems");
                 });
 
             modelBuilder.Entity("SistemaMAV.Entities.Models.Marca", b =>
@@ -844,11 +1227,37 @@ namespace Web.Migrations
             modelBuilder.Entity("SistemaMAV.Entities.Models.Modelo", b =>
                 {
                     b.Navigation("Planillas");
+
+                    b.Navigation("Propietarios");
                 });
 
             modelBuilder.Entity("SistemaMAV.Entities.Models.Planilla", b =>
                 {
+                    b.Navigation("MantenimientoItems");
+
+                    b.Navigation("Mantenimientos");
+
                     b.Navigation("PlanillaItems");
+                });
+
+            modelBuilder.Entity("SistemaMAV.Entities.Models.PlanillaItem", b =>
+                {
+                    b.Navigation("MantenimientoItems");
+                });
+
+            modelBuilder.Entity("SistemaMAV.Entities.Models.Propietario", b =>
+                {
+                    b.Navigation("Mantenimientos");
+                });
+
+            modelBuilder.Entity("SistemaMAV.Entities.Models.Proveedor", b =>
+                {
+                    b.Navigation("Stock");
+                });
+
+            modelBuilder.Entity("SistemaMAV.Entities.Models.Taller", b =>
+                {
+                    b.Navigation("Mantenimientos");
                 });
 
             modelBuilder.Entity("SistemaMAV.Entities.Models.TipoUnidad", b =>

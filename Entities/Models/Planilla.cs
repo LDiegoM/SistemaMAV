@@ -26,4 +26,6 @@ public class Planilla {
     public bool Activo { get; set; }
 
     public ICollection<PlanillaItem> PlanillaItems { get; set; }
+    public ICollection<Mantenimiento> Mantenimientos { get; set; }
+    public ICollection<MantenimientoItem> MantenimientoItems { get; set; }
 }

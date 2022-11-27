@@ -17,4 +17,5 @@ public class ItemMantenimiento {
     public int? TiempoPredeterminado { get; set; }
 
     public ICollection<PlanillaItem> PlanillaItems { get; set; }
+    public ICollection<Stock> Stock { get; set; }
 }

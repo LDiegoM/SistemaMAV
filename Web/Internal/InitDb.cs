@@ -6,7 +6,7 @@ namespace SistemaMAV.Web.Internal;
 public static class InitDb {
     public static void AddDbContextToService(IServiceCollection services, IConfiguration configuration) {
 
-        string strDatabaseType = configuration.GetValue<string>(Constants.CONFIG_DATABASE_TYPE);
+        string strDatabaseType = configuration.GetValue<string>(Constants.CONFIG_DATABASE_TYPE)??Constants.DATABASE_TYPE_SQLITE;
         bool flgSqlServer = strDatabaseType == Constants.DATABASE_TYPE_SQL_SERVER;
 
         if (flgSqlServer) {

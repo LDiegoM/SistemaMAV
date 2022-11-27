@@ -31,7 +31,9 @@ public class PlanillaViewModel {
 
     public ICollection<PlanillaItem>? PlanillaItems { get; set; }
 
-    public PlanillaViewModel() {}
+    public PlanillaViewModel() {
+        Detalle = "";
+    }
 
     public PlanillaViewModel(Planilla planilla) {
         PlanillaId = planilla.PlanillaId;
@@ -47,7 +49,7 @@ public class PlanillaViewModel {
         return new Planilla() {
             PlanillaId = PlanillaId,
             ModeloId = ModeloId,
-            Modelo = Modelo,
+            Modelo = Modelo??new Modelo(),
             Detalle = Detalle,
             AnioFabricacion = AnioFabricacion,
             Version = Version,

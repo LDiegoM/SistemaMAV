@@ -25,4 +25,5 @@ public class Modelo {
     public DateTime? FechaBaja { get; set; }
 
     public ICollection<Planilla> Planillas { get; set; }
+    public ICollection<Propietario> Propietarios { get; set; }
 }
