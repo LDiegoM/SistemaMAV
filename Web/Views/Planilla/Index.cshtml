@@ -46,6 +46,7 @@
                                 <a class="btn btn-primary btn-xs" href="/@Html.Raw(objName)/Edit/@Html.Raw(item.PlanillaId)" title="Modificar"><span class="glyphicon glyphicon-pencil"> </span></a>
                                 <a class="btn btn-default btn-xs" href="/@Html.Raw(objName)/Details/@Html.Raw(item.PlanillaId)" title="Detalles"><span class="glyphicon glyphicon-eye-open"> </span></a>
                                 <a class="btn btn-danger btn-xs" href="/@Html.Raw(objName)/Delete/@Html.Raw(item.PlanillaId)" title="Borrar"><span class="glyphicon glyphicon-remove"> </span></a>
+                                <a class="btn btn-default btn-xs" href="/PlanillaItem/Index/@Html.Raw(item.PlanillaId)" title="Editar items"><span class="glyphicon glyphicon-list-alt"> </span></a>
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Modelo.Detalle)

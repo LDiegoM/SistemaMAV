@@ -1,0 +1,90 @@
+@model IEnumerable<TallerViewModel>
+
+@{
+    ViewData["Title"] = "Talleres mecánicos";
+    string objName = this.ViewContext.RouteData.Values["controller"].ToString();
+}
+
+@Html.Raw(References.GetReferences_DataTables())
+    
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box box-primary">
+            <div class="box-header">
+                <h3 class="box-title">@ViewBag.Title</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <p>
+                    <a class="btn btn-primary btn-sm" href="/@Html.Raw(objName)/Create" title="Nuevo"><span class="glyphicon glyphicon-plus" style="margin-right: 5px;"></span>Nuevo</a>
+                </p>
+                <table id="grd" class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Nombre)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Direccion)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Localidad)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Telefono)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Email)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Activo)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Puntaje)
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+@foreach (var item in Model) {
+                        <tr>
+                            <td>
+                                <a class="btn btn-primary btn-xs" href="/@Html.Raw(objName)/Edit/@Html.Raw(item.TallerId)" title="Modificar"><span class="glyphicon glyphicon-pencil"> </span></a>
+                                <a class="btn btn-default btn-xs" href="/@Html.Raw(objName)/Details/@Html.Raw(item.TallerId)" title="Detalles"><span class="glyphicon glyphicon-eye-open"> </span></a>
+                                <a class="btn btn-danger btn-xs" href="/@Html.Raw(objName)/Delete/@Html.Raw(item.TallerId)" title="Borrar"><span class="glyphicon glyphicon-remove"> </span></a>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Direccion)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Localidad.Nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Telefono)
+                            </td>
+                            <th>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </th>
+                            <th>
+                                @Html.Raw(item.Activo ? "Si" : "No")
+                            </th>
+                            <th>
+                                @Html.DisplayFor(modelItem => item.Puntaje)
+                            </th>
+                        </tr>
+}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- page script -->
+<script>
+    $(document).ready(function () {
+        initDataGrid("grd");
+    });
+</script>
