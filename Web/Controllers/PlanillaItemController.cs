@@ -18,9 +18,14 @@ public class PlanillaItemController : Controller {
         _context = context;
     }
 
-    // GET: PlanillaItem
-    public async Task<IActionResult> Index() {
-        List<PlanillaItem> planillaItems = await _context.PlanillaItem.ToListAsync();
+    // GET: PlanillaItem/5
+    public async Task<IActionResult> Index(int? id) {
+        List<PlanillaItem> planillaItems;
+        if (id == null)
+            planillaItems = await _context.PlanillaItem.ToListAsync();
+        else
+            planillaItems = await _context.PlanillaItem.Where(i => i.PlanillaId == id).ToListAsync();
+
         List<PlanillaItemViewModel> planillaItemsVM = new List<PlanillaItemViewModel>();
         foreach(PlanillaItem unaPlanillaItem in planillaItems) {
             unaPlanillaItem.Planilla = await _context.Planilla.FirstOrDefaultAsync(p => p.PlanillaId == unaPlanillaItem.PlanillaId);

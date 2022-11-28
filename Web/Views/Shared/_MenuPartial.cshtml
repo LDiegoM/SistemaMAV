@@ -6,9 +6,9 @@
     string userName = "Invitado"; //SecurityFunctions.GetActualUser(User).FullName;
     string userFullName = "Usuario invitado";
     string pageName = "Home";
-    if (ViewContext.RouteData.Values["controller"] != null)
-        pageName = ViewContext.RouteData.Values["controller"].ToString()??pageName;
-
+    var controllerName = ViewContext.RouteData.Values["controller"];
+    if (controllerName != null)
+        pageName = controllerName.ToString()??pageName;
 
     bool flgAdminRole = false;
     bool flgUserLogedIn = false;
@@ -85,6 +85,10 @@
                         <li class='@(pageName == "ItemMantenimiento" ? "active" : "")'><a href="/ItemMantenimiento"><i class="fa fa-circle-o"></i> Items de Mantenimiento</a></li>
                         <li class='@(pageName == "Planilla" ? "active" : "")'><a href="/Planilla"><i class="fa fa-circle-o"></i> Planillas de Mantenimiento</a></li>
                         <li class='@(pageName == "PlanillaItem" ? "active" : "")'><a href="/PlanillaItem"><i class="fa fa-circle-o"></i> Items de Planillas</a></li>
+                        <li class='@(pageName == "Localidad" ? "active" : "")'><a href="/Localidad"><i class="fa fa-circle-o"></i> Localidades</a></li>
+                        <li class='@(pageName == "Proveedor" ? "active" : "")'><a href="/Proveedor"><i class="fa fa-circle-o"></i> Proveedores de respuestos</a></li>
+                        <li class='@(pageName == "Taller" ? "active" : "")'><a href="/Taller"><i class="fa fa-circle-o"></i> Talleres mecánicos</a></li>
+
                     </ul>
                 </li>
                 }
