@@ -11,11 +11,11 @@ public class MantenimientoViewModel {
     [Display(Name = "Código")]
     public int MantenimientoId { get; set; }
 
-    [Display(Name = "Propietario")]
-    [Required(ErrorMessage = "Debe ingresar el Propietario")]
-    public int PropietarioId { get; set; }
-    [Display(Name = "Propietario")]
-    public Propietario? Propietario { get; set; }
+    [Display(Name = "Vehículo")]
+    [Required(ErrorMessage = "Debe ingresar el Vehículo")]
+    public int VehiculoId { get; set; }
+    [Display(Name = "Vehiculo")]
+    public Vehiculo? Vehiculo { get; set; }
 
     [Display(Name = "Taller")]
     [Required(ErrorMessage = "Debe ingresar el Taller")]
@@ -45,8 +45,8 @@ public class MantenimientoViewModel {
 
     public MantenimientoViewModel(Mantenimiento mantenimiento) {
         MantenimientoId = mantenimiento.MantenimientoId;
-        PropietarioId = mantenimiento.PropietarioId;
-        Propietario = mantenimiento.Propietario;
+        VehiculoId = mantenimiento.VehiculoId;
+        Vehiculo = mantenimiento.Vehiculo;
         TallerId = mantenimiento.TallerId;
         Taller = mantenimiento.Taller;
         PlanillaId = mantenimiento.PlanillaId;
@@ -59,7 +59,7 @@ public class MantenimientoViewModel {
     public Mantenimiento ToMantenimiento() {
         return new Mantenimiento() {
             MantenimientoId = MantenimientoId,
-            PropietarioId = PropietarioId,
+            VehiculoId = VehiculoId,
             TallerId = TallerId,
             PlanillaId = PlanillaId,
             Fecha = Fecha,

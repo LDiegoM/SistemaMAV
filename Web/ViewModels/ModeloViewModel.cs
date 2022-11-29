@@ -34,7 +34,7 @@ public class ModeloViewModel {
     public DateTime? FechaBaja { get; set; }
 
     public ICollection<Planilla>? Planillas { get; set; }
-    public ICollection<Propietario>? Propietarios { get; set; }
+    public ICollection<Vehiculo>? Vehiculos { get; set; }
 
     public ModeloViewModel() {
         Detalle = "";

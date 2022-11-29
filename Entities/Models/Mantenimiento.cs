@@ -10,8 +10,8 @@ public class Mantenimiento {
     public int MantenimientoId { get; set; }
 
     [Required]
-    public int PropietarioId { get; set; }
-    public Propietario Propietario { get; set; }
+    public int VehiculoId { get; set; }
+    public Vehiculo Vehiculo { get; set; }
 
     [Required]
     public int TallerId { get; set; }

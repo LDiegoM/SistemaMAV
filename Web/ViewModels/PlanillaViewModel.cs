@@ -49,7 +49,6 @@ public class PlanillaViewModel {
         return new Planilla() {
             PlanillaId = PlanillaId,
             ModeloId = ModeloId,
-            Modelo = Modelo??new Modelo(),
             Detalle = Detalle,
             AnioFabricacion = AnioFabricacion,
             Version = Version,

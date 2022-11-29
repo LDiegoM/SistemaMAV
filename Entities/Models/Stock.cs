@@ -17,6 +17,10 @@ public class Stock {
     public int ProveedorId { get; set; }
     public Proveedor Proveedor { get; set; }
 
+    [Required]
+    [Column(TypeName = "varchar(250)")]
+    public string Detalle { get; set; }
+
     public int CantidadEnStock { get; set; }
 
     public double PrecioVenta { get; set; }
