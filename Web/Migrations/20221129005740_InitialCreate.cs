@@ -305,6 +305,7 @@ namespace Web.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     ItemMantenimientoId = table.Column<int>(type: "INTEGER", nullable: false),
                     ProveedorId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Detalle = table.Column<string>(type: "varchar(250)", nullable: false),
                     CantidadEnStock = table.Column<int>(type: "INTEGER", nullable: false),
                     PrecioVenta = table.Column<double>(type: "REAL", nullable: false)
                 },
@@ -349,10 +350,10 @@ namespace Web.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Propietario",
+                name: "Vehiculo",
                 columns: table => new
                 {
-                    PropietarioId = table.Column<int>(type: "INTEGER", nullable: false)
+                    VehiculoId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     UserId = table.Column<string>(type: "varchar(50)", nullable: false),
                     ModeloId = table.Column<int>(type: "INTEGER", nullable: false),
@@ -363,9 +364,9 @@ namespace Web.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Propietario", x => x.PropietarioId);
+                    table.PrimaryKey("PK_Vehiculo", x => x.VehiculoId);
                     table.ForeignKey(
-                        name: "FK_Propietario_Modelo_ModeloId",
+                        name: "FK_Vehiculo_Modelo_ModeloId",
                         column: x => x.ModeloId,
                         principalTable: "Modelo",
                         principalColumn: "ModeloId",
@@ -409,7 +410,7 @@ namespace Web.Migrations
                 {
                     MantenimientoId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    PropietarioId = table.Column<int>(type: "INTEGER", nullable: false),
+                    VehiculoId = table.Column<int>(type: "INTEGER", nullable: false),
                     TallerId = table.Column<int>(type: "INTEGER", nullable: false),
                     PlanillaId = table.Column<int>(type: "INTEGER", nullable: false),
                     Fecha = table.Column<DateTime>(type: "TEXT", nullable: false),
@@ -426,16 +427,16 @@ namespace Web.Migrations
                         principalColumn: "PlanillaId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Mantenimiento_Propietario_PropietarioId",
-                        column: x => x.PropietarioId,
-                        principalTable: "Propietario",
-                        principalColumn: "PropietarioId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
                         name: "FK_Mantenimiento_Taller_TallerId",
                         column: x => x.TallerId,
                         principalTable: "Taller",
                         principalColumn: "TallerId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Mantenimiento_Vehiculo_VehiculoId",
+                        column: x => x.VehiculoId,
+                        principalTable: "Vehiculo",
+                        principalColumn: "VehiculoId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -554,7 +555,34 @@ namespace Web.Migrations
                 values: new object[,]
                 {
                     { 1, "Chevrolet Agile", new DateTime(2005, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 2, 1 },
-                    { 2, "Ford Fiesta Kinetic Design", new DateTime(2009, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 1, 1 }
+                    { 2, "Ford Fiesta Kinetic Design", new DateTime(2009, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 1, 1 },
+                    { 3, "Chevrolet Prisma", new DateTime(2008, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 2, 1 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Proveedor",
+                columns: new[] { "ProveedorId", "Activo", "AnioApertura", "Direccion", "Email", "LocalidadId", "Nombre", "Telefono", "VotosNegativos", "VotosPositivos" },
+                values: new object[,]
+                {
+                    { 1, true, 2010, "Cabildo 2000", "ab@mav.com", 1, "Autopartes Belgrano", "11112222", 3, 5 },
+                    { 2, true, 2010, "Cabildo 4000", "ap@mav.com", 1, "Autopartes Nuñez", "11113333", 0, 5 },
+                    { 3, true, 2010, "Posta 3400", "rs@mav.com", 1, "Repuestos Saavedra", "11114444", 3, 7 },
+                    { 4, true, 2010, "Maipu 3000", "olivos@mav.com", 2, "Todo para su auto Olivos", "11115555", 0, 3 },
+                    { 5, true, 2010, "Edison 2000", "rm@mav.com", 3, "Repuestos Martinez", "11116666", 3, 7 },
+                    { 6, true, 2010, "Libertador 10400", "at@mav.com", 4, "Autopartes Tigre", "11117777", 3, 7 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Taller",
+                columns: new[] { "TallerId", "Activo", "AnioApertura", "Direccion", "Email", "LocalidadId", "Nombre", "Telefono", "VotosNegativos", "VotosPositivos" },
+                values: new object[,]
+                {
+                    { 1, true, 2010, "Cabildo 2000", "ab@mav.com", 1, "Taller general Belgrano", "11112222", 3, 5 },
+                    { 2, true, 2010, "Cabildo 4000", "ap@mav.com", 1, "Taller general Nuñez", "11113333", 0, 5 },
+                    { 3, true, 2010, "Posta 3400", "rs@mav.com", 1, "Taller general Saavedra", "11114444", 3, 7 },
+                    { 4, true, 2010, "Maipu 3000", "olivos@mav.com", 2, "Taller Olivos", "11115555", 0, 3 },
+                    { 5, true, 2010, "Edison 2000", "rm@mav.com", 3, "Taller Martinez", "11116666", 3, 7 },
+                    { 6, true, 2010, "Libertador 10400", "at@mav.com", 4, "Taller general Tigre", "11117777", 3, 7 }
                 });
 
             migrationBuilder.InsertData(
@@ -563,7 +591,21 @@ namespace Web.Migrations
                 values: new object[,]
                 {
                     { 1, true, 2015, "Chevrolet Agile", 1, 1 },
-                    { 2, true, 2018, "Ford Fiesta Kinetic Design", 2, 1 }
+                    { 2, true, 2018, "Ford Fiesta Kinetic Design", 2, 1 },
+                    { 3, true, 2017, "Chevrolet Prisma", 3, 1 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Stock",
+                columns: new[] { "StockId", "CantidadEnStock", "Detalle", "ItemMantenimientoId", "PrecioVenta", "ProveedorId" },
+                values: new object[,]
+                {
+                    { 1, 50, "Aceite Elaion F50 d1 (Dexos 1 API-SN ILSAC GF-5, grado SAE 5W30) x4Lt", 1, 17000.0, 1 },
+                    { 2, 10, "Aceite Elaion F50 d1 (Dexos 1 API-SN ILSAC GF-5, grado SAE 5W30) x4Lt", 1, 16700.0, 2 },
+                    { 3, 20, "Aceite Elaion F50 d1 (Dexos 1 API-SN ILSAC GF-5, grado SAE 5W30) x4Lt", 1, 18200.0, 3 },
+                    { 4, 50, "Bujía Ferrazzi Iridium+Platinum - nº 5867276", 6, 2500.0, 1 },
+                    { 5, 10, "Bujía Ferrazzi Iridium+Platinum - nº 5867276", 6, 2490.0, 2 },
+                    { 6, 30, "Bujía Ferrazzi Iridium+Platinum - nº 5867276", 6, 2700.0, 5 }
                 });
 
             migrationBuilder.InsertData(
@@ -588,7 +630,25 @@ namespace Web.Migrations
                     { 15, null, 15, 20000, null, null, 1, null },
                     { 16, "Colador de la bomba de combustible.", 16, 80000, null, null, 1, null },
                     { 17, "Controlar en cada inspección. No requiere sustitución, excepto que haya fuga.", 17, 10000, null, null, 1, "Gas R134a" },
-                    { 18, "Cambiar el líquido refrigerante y reparar posibles fugas. Antes de cambiar se recomienda limpiar el sistema de refrigeración.", 18, null, null, null, 1, "Inspeccionar el nivel de líquido refrigerante mensualmente." }
+                    { 18, "Cambiar el líquido refrigerante y reparar posibles fugas. Antes de cambiar se recomienda limpiar el sistema de refrigeración.", 18, null, null, null, 1, "Inspeccionar el nivel de líquido refrigerante mensualmente." },
+                    { 20, "Cambie el aceite del motor y el filtro de aceite conforme a los intervalos de tiempo o kilómetros recorridos, ya que los mismos pierden sus propiedades de lubricación no solo debido al funcionamiento del motor, sino también a su envejecimiento. Verificar el nivel de aceite semanalmente o antes de iniciar un viaje de más de 50 kilómetros. Tener en cuenta que el gasto promedio de aceite es de 0,8 litros cada 1000 km.", 1, 10000, 12, "Cambiar y verificar nivel con el motor a temperatura de operación normal.", 3, "Utilizar aceites Elaion F50 d1 (Dexos 1 API-SN ILSAC GF-5, grado SAE 5W30)." },
+                    { 21, null, 2, 2000, 2, null, 3, "No esperar al siguiente servicio. Verificar frecuentemente en estaciones de servicio o talleres especializados en neumáticos." },
+                    { 22, "Verificar el estado de los tensores.", 3, 50000, null, null, 3, null },
+                    { 23, "Inspeccionar fugas de aceite, líquido refrigerante, de dirección, de freno, grasa de la caja de cambios y líquido lava-parabrisas.", 4, 10000, 12, null, 3, null },
+                    { 24, "Inspeccionar si el vehículo presenta anomalías ocasionales. Realizar una prueba en ruta después de la inspección.", 5, 30000, null, null, 3, null },
+                    { 25, null, 6, 30000, null, null, 3, null },
+                    { 26, "Inspeccionar el estado de la correa y del tensor automático.", 7, null, null, "Primer control a los 20.000 Km, luego cada 50.000 Km.", 3, null },
+                    { 27, null, 8, 50000, null, null, 3, null },
+                    { 28, "Verificar el nivel y sustituir si fuera necesario.", 9, 10000, 12, "Caja de velocidades", 3, "Aceite mineral para cajas de cambios, SAE 75W85, engranajes helicoidales, color rojo." },
+                    { 29, "Verificar el nivel y completar al nivel si hay fuga. Se debe corregir inmediatamente si hay fuga.", 10, 20000, 24, null, 3, "Líquido de frenos DOT 4 de ACDelco." },
+                    { 30, "Verificar el nivel. No requiere cambio, excepto baja del nivel.", 11, 10000, null, null, 3, "Aceite Dexron II de ACDelco." },
+                    { 31, "Comprobar el recorrido.", 12, 30000, null, null, 3, null },
+                    { 32, "Limpiar el filtro si fuera necesario.", 13, null, null, "Primer control a los 20.000 Km, luego cada 30.000 Km.", 3, null },
+                    { 33, null, 14, 30000, null, null, 3, null },
+                    { 34, null, 15, 20000, null, null, 3, null },
+                    { 35, "Colador de la bomba de combustible.", 16, 80000, null, null, 3, null },
+                    { 36, "Controlar en cada inspección. No requiere sustitución, excepto que haya fuga.", 17, 10000, null, null, 3, "Gas R134a" },
+                    { 37, "Cambiar el líquido refrigerante y reparar posibles fugas. Antes de cambiar se recomienda limpiar el sistema de refrigeración.", 18, null, null, null, 3, "Inspeccionar el nivel de líquido refrigerante mensualmente." }
                 });
 
             migrationBuilder.CreateIndex(
@@ -634,14 +694,14 @@ namespace Web.Migrations
                 column: "PlanillaId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Mantenimiento_PropietarioId",
-                table: "Mantenimiento",
-                column: "PropietarioId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Mantenimiento_TallerId",
                 table: "Mantenimiento",
                 column: "TallerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Mantenimiento_VehiculoId",
+                table: "Mantenimiento",
+                column: "VehiculoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_MantenimientoItem_MantenimientoId",
@@ -684,11 +744,6 @@ namespace Web.Migrations
                 column: "PlanillaId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Propietario_ModeloId",
-                table: "Propietario",
-                column: "ModeloId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Proveedor_LocalidadId",
                 table: "Proveedor",
                 column: "LocalidadId");
@@ -707,6 +762,11 @@ namespace Web.Migrations
                 name: "IX_Taller_LocalidadId",
                 table: "Taller",
                 column: "LocalidadId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Vehiculo_ModeloId",
+                table: "Vehiculo",
+                column: "ModeloId");
         }
 
         /// <inheritdoc />
@@ -749,10 +809,10 @@ namespace Web.Migrations
                 name: "Proveedor");
 
             migrationBuilder.DropTable(
-                name: "Propietario");
+                name: "Taller");
 
             migrationBuilder.DropTable(
-                name: "Taller");
+                name: "Vehiculo");
 
             migrationBuilder.DropTable(
                 name: "ItemMantenimiento");

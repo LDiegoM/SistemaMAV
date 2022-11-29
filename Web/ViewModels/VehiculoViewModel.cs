@@ -6,10 +6,10 @@ using System.Reflection;
 using SistemaMAV.Entities.Models;
 
 namespace SistemaMAV.Web.ViewModels;
-public class PropietarioViewModel {
+public class VehiculoViewModel {
 
     [Display(Name = "Código")]
-    public int PropietarioId { get; set; }
+    public int VehiculoId { get; set; }
 
     [Display(Name = "Usuario")]
     [Required(ErrorMessage = "Debe ingresar el Usuario")]
@@ -37,25 +37,25 @@ public class PropietarioViewModel {
 
     public ICollection<Mantenimiento>? Mantenimientos { get; set; }
 
-    public PropietarioViewModel() {
+    public VehiculoViewModel() {
         UserId = "";
         Patente = "";
     }
 
-    public PropietarioViewModel(Propietario propietario) {
-        PropietarioId = propietario.PropietarioId;
-        UserId = propietario.UserId;
-        ModeloId = propietario.ModeloId;
-        Modelo = propietario.Modelo;
-        Patente = propietario.Patente;
-        AnioFabricacion = propietario.AnioFabricacion;
-        FechaAlta = propietario.FechaAlta;
-        Activo = propietario.Activo;
+    public VehiculoViewModel(Vehiculo vehiculo) {
+        VehiculoId = vehiculo.VehiculoId;
+        UserId = vehiculo.UserId;
+        ModeloId = vehiculo.ModeloId;
+        Modelo = vehiculo.Modelo;
+        Patente = vehiculo.Patente;
+        AnioFabricacion = vehiculo.AnioFabricacion;
+        FechaAlta = vehiculo.FechaAlta;
+        Activo = vehiculo.Activo;
     }
 
-    public Propietario ToPropietario() {
-        return new Propietario() {
-            PropietarioId = PropietarioId,
+    public Vehiculo ToVehiculo() {
+        return new Vehiculo() {
+            VehiculoId = VehiculoId,
             UserId = UserId,
             ModeloId = ModeloId,
             Patente = Patente,

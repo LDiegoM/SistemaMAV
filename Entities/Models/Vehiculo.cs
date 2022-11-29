@@ -5,9 +5,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection;
 
 namespace SistemaMAV.Entities.Models;
-public class Propietario {
+public class Vehiculo {
     [Key]
-    public int PropietarioId { get; set; }
+    public int VehiculoId { get; set; }
 
     [Required]
     [Column(TypeName = "varchar(50)")]
