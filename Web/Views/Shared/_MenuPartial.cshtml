@@ -12,7 +12,7 @@
 
     bool flgAdminRole = false;
     bool flgUserLogedIn = false;
-    bool flgMenuConsultas = (pageName == "Home" || pageName == "Consultar" || pageName == "Propiedad" || pageName == "Manage" || pageName == "Account");
+    bool flgMenuConsultas = (pageName == "Home" || pageName == "Consultar" || pageName == "Vehiculo" || pageName == "Manage" || pageName == "Account");
 
     @if (SignInManager.IsSignedIn(User)) {
             userName = User.Identity?.Name??userName;
@@ -64,7 +64,7 @@
                         <li class="active"><a href="/Consultar"><i class="fa fa-circle-o"></i> Consultar Vehículo</a></li>
                         @if (flgUserLogedIn && !flgAdminRole)
                         {
-                            <li class="active"><a href="/Propiedad"><i class="fa fa-circle-o"></i> Mis Vehículos</a></li>
+                            <li class="active"><a href="/Vehiculo"><i class="fa fa-circle-o"></i> Mis Vehículos</a></li>
                         }
                     </ul>
                 </li>
