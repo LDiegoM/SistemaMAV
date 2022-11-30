@@ -32,7 +32,7 @@ public class VehiculoViewModel {
     [Required(ErrorMessage = "Debe ingresar la Fecha de Alta")]
     public DateTime FechaAlta { get; set; }
 
-    [Display(Name = "Activ?")]
+    [Display(Name = "Activo?")]
     public bool Activo { get; set; }
 
     public ICollection<Mantenimiento>? Mantenimientos { get; set; }
