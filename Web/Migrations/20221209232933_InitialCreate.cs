@@ -361,6 +361,7 @@ namespace Web.Migrations
                     ModeloId = table.Column<int>(type: "INTEGER", nullable: false),
                     Patente = table.Column<string>(type: "TEXT", nullable: false),
                     AnioFabricacion = table.Column<int>(type: "INTEGER", nullable: false),
+                    Kilometros = table.Column<int>(type: "INTEGER", nullable: false),
                     FechaAlta = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Activo = table.Column<bool>(type: "bit", nullable: false)
                 },

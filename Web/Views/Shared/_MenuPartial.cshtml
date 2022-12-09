@@ -12,7 +12,8 @@
 
     bool flgAdminRole = false;
     bool flgUserLogedIn = false;
-    bool flgMenuConsultas = (pageName == "Home" || pageName == "Consultar" || pageName == "Vehiculo" || pageName == "Manage" || pageName == "Account");
+    bool flgMenuConsultas = (pageName == "Home"
+        || pageName == "Consultar" || pageName == "Mantenimiento" || pageName == "Vehiculo" || pageName == "Manage" || pageName == "Account");
 
     @if (SignInManager.IsSignedIn(User)) {
             userName = User.Identity?.Name??userName;
@@ -31,8 +32,7 @@
         }
 }
 
-@if (true)
-{
+@if (true) {
 
     <!-- Left side column. contains the logo and sidebar -->
     <aside class="main-sidebar">
@@ -62,14 +62,14 @@
                     <ul class="treeview-menu">
                         <li class="active"><a href="/"><i class="fa fa-circle-o"></i> Inicio</a></li>
                         <li class="active"><a href="/Consultar"><i class="fa fa-circle-o"></i> Consultar Vehículo</a></li>
-                        @if (flgUserLogedIn && !flgAdminRole)
-                        {
+                        @if (flgUserLogedIn && !flgAdminRole) {
                             <li class="active"><a href="/Vehiculo"><i class="fa fa-circle-o"></i> Mis Vehículos</a></li>
+                            <li class="active"><a href="/Consultar/Taller"><i class="fa fa-circle-o"></i> Lista de Talleres</a></li>
+                            <li class="active"><a href="/Mantenimiento"><i class="fa fa-circle-o"></i> Mantenimientos realizados</a></li>
                         }
                     </ul>
                 </li>
-                @if (flgAdminRole)
-                {
+                @if (flgAdminRole) {
                 <li class='treeview @(!flgMenuConsultas ? "active" : "")'>
                     <a href="#">
                         <i class="fa fa-edit"></i>
@@ -92,8 +92,12 @@
                     </ul>
                 </li>
                 }
-                <!--<li class="header">MENSAJES</li>-->
-                <!--<li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Pasaje realizado <i class="pull-right">10:00 AM</i></span></a></li>-->
+
+                @if (!flgAdminRole) {
+                    <li class="header">CONSEJOS DIARIOS</li>
+                    <li><a href="#"><span style="white-space:normal;">Utilice el cinturón de seguridad antes de iniciar la marcha y hasta detener completamente el vehículo.</span></a></li>
+                    <li><a href="#"><span style="white-space:normal;">Mantenga actualizado el kilometraje de sus vehículos.</span></a></li>
+                }
             </ul>
         </section>
         <!-- /.sidebar -->

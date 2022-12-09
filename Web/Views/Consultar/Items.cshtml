@@ -7,17 +7,51 @@
 
 @Html.Raw(References.GetReferences_DataTables())
 
+@if (Model.Vehiculo != null) {
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-default" style="border: solid 1px lightblue;">
+                <div class="box-header">
+                    <h3 class="box-title">Mi Vehículo</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <dl class="row">
+                        <dt class="col-sm-2">Patente</dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Vehiculo.Patente)
+                        </dd>
+                        <dt class="col-sm-2">Kilómetros</dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Vehiculo.Kilometros)
+                        </dd>
+                        <dt class="col-sm-2">Fecha de Alta</dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Vehiculo.FechaAlta)
+                        </dd>
+                        <dt class="col-sm-2">Próximo Mantenimiento</dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Vehiculo.ProximoMantenimiento)
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
 <div class="row">
     <div class="col-xs-12">
         <div class="box box-primary">
             <div class="box-header">
-                <h3 class="box-title">Resultados</h3>
+                <h3 class="box-title">Detalle de mantenimiento</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
                 <table id="grd" class="table table-bordered table-striped table-hover">
                     <thead>
                         <tr>
+                            <th></th>
                             <th>Item de Mantenimiento</th>
                             <th>Kilómetros</th>
                             <th>Meses</th>
@@ -27,9 +61,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (PlanillaItemViewModel item in Model.Items)
-                        {
+                        @foreach (SistemaMAV.Web.ViewModels.Consultar.ConsultaPlanillaItemViewModel item in Model.Items) {
                             <tr>
+                                <td>
+@if (item.HayStock == true) {
+                                    <a class="btn btn-default btn-xs" href="/Consultar/Stock/@Html.Raw(item.ItemMantenimientoId)" title="Consultar stock y precios"><span class="glyphicon glyphicon-usd"> </span></a>
+}
+                                </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.ItemMantenimiento.Detalle)
                                 </td>
@@ -56,6 +94,8 @@
         </div>
     </div>
 </div>
-<script>$(document).ready(function () {
-        initDataGrid("grd", 0);
-    });</script>
+<script>
+    $(document).ready(function () {
+        initDataGrid("grd", 1);
+    });
+</script>

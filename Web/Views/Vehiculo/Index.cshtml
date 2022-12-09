@@ -32,7 +32,13 @@
                                 @Html.DisplayNameFor(model => model.AnioFabricacion)
                             </th>
                             <th>
+                                @Html.DisplayNameFor(model => model.Kilometros)
+                            </th>
+                            <th>
                                 @Html.DisplayNameFor(model => model.FechaAlta)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ProximoMantenimiento)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.Activo)
@@ -46,6 +52,11 @@
                                 <a class="btn btn-primary btn-xs" href="/@Html.Raw(objName)/Edit/@Html.Raw(item.VehiculoId)" title="Modificar"><span class="glyphicon glyphicon-pencil"> </span></a>
                                 <a class="btn btn-default btn-xs" href="/@Html.Raw(objName)/Details/@Html.Raw(item.VehiculoId)" title="Detalles"><span class="glyphicon glyphicon-eye-open"> </span></a>
                                 <a class="btn btn-danger btn-xs" href="/@Html.Raw(objName)/Delete/@Html.Raw(item.VehiculoId)" title="Borrar"><span class="glyphicon glyphicon-remove"> </span></a>
+                                @if (item.Planilla != null)
+                                {
+                                    <a class="btn btn-default btn-xs" href="/Consultar/Items/@Html.Raw(item.Planilla.PlanillaId)" title="Recomendaciones de mantenimiento"><span class="glyphicon glyphicon-info-sign"> </span></a>
+                                    <a class="btn btn-default btn-xs" href="/Mantenimiento/Index/@Html.Raw(item.VehiculoId)" title="Mantenimientos realizados"><span class="glyphicon glyphicon-list-alt"> </span></a>
+                                }
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Modelo.Detalle)
@@ -57,7 +68,13 @@
                                 @Html.DisplayFor(modelItem => item.AnioFabricacion)
                             </td>
                             <td>
+                                @Html.DisplayFor(modelItem => item.Kilometros)
+                            </td>
+                            <td>
                                 @Html.DisplayFor(modelItem => item.FechaAlta)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProximoMantenimiento)
                             </td>
                             <td>
                                 @Html.Raw(item.Activo ? "Si" : "No")

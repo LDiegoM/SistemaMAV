@@ -28,12 +28,20 @@ public class VehiculoViewModel {
     [Display(Name = "Año Fabric.")]
     public int AnioFabricacion { get; set; }
 
+    [Display(Name = "Kilómetros")]
+    public int Kilometros { get; set; }
+
     [Display(Name = "Fecha de Alta")]
     [Required(ErrorMessage = "Debe ingresar la Fecha de Alta")]
     public DateTime FechaAlta { get; set; }
 
     [Display(Name = "Activo?")]
     public bool Activo { get; set; }
+
+    [Display(Name = "Próx. Mantenimiento (km)")]
+    public string? ProximoMantenimiento { get; set; }
+
+    public Planilla? Planilla { get; set; }
 
     public ICollection<Mantenimiento>? Mantenimientos { get; set; }
 
@@ -49,6 +57,7 @@ public class VehiculoViewModel {
         Modelo = vehiculo.Modelo;
         Patente = vehiculo.Patente;
         AnioFabricacion = vehiculo.AnioFabricacion;
+        Kilometros = vehiculo.Kilometros;
         FechaAlta = vehiculo.FechaAlta;
         Activo = vehiculo.Activo;
     }
@@ -60,6 +69,7 @@ public class VehiculoViewModel {
             ModeloId = ModeloId,
             Patente = Patente,
             AnioFabricacion = AnioFabricacion,
+            Kilometros = Kilometros,
             FechaAlta = FechaAlta,
             Activo = Activo
         };

@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using SistemaMAV.Web.Data;
 using SistemaMAV.Web.ViewModels;
 using SistemaMAV.Entities.Models;
+using SistemaMAV.Web.Helpers;
 
 namespace SistemaMAV.Web.Controllers;
 
@@ -38,7 +39,15 @@ public class VehiculoController : Controller {
             unVehiculo.Modelo = new Modelo();
             if (_context.Modelo != null)
                 unVehiculo.Modelo = await _context.Modelo.FirstOrDefaultAsync<Modelo>(m => m.ModeloId == unVehiculo.ModeloId)??unVehiculo.Modelo;
-            vehiculosVM.Add(new VehiculoViewModel(unVehiculo));
+            VehiculoViewModel vehiculoVM = new VehiculoViewModel(unVehiculo);
+            if (_context.Planilla != null)
+                vehiculoVM.Planilla = await _context.Planilla.FirstOrDefaultAsync<Planilla>(p =>
+                    p.ModeloId == unVehiculo.ModeloId && p.AnioFabricacion == unVehiculo.AnioFabricacion && p.Activo == true);
+
+            int? proximoMantenimiento = unVehiculo.GetProximoMantenimiento(_context);
+            if (proximoMantenimiento != null)
+                vehiculoVM.ProximoMantenimiento = proximoMantenimiento.ToString() + " Km";
+            vehiculosVM.Add(vehiculoVM);
         }
         return View(vehiculosVM);
     }
@@ -64,7 +73,14 @@ public class VehiculoController : Controller {
             return NotFound();
 
         vehiculo.UserId = ".";
-        return View(new VehiculoViewModel(vehiculo));
+
+        VehiculoViewModel vehiculoVM = new VehiculoViewModel(vehiculo);
+
+        int? proximoMantenimiento = vehiculo.GetProximoMantenimiento(_context);
+        if (proximoMantenimiento != null)
+            vehiculoVM.ProximoMantenimiento = proximoMantenimiento.ToString() + " Km";
+
+        return View(vehiculoVM);
     }
 
     // GET: Vehiculo/Create
@@ -81,7 +97,7 @@ public class VehiculoController : Controller {
     // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("UserId,ModeloId,Patente,AnioFabricacion,Activo")] VehiculoViewModel vehiculoVM) {
+    public async Task<IActionResult> Create([Bind("UserId,ModeloId,Patente,AnioFabricacion,Kilometros,Activo")] VehiculoViewModel vehiculoVM) {
         if (ModelState.IsValid) {
             var user = await _userManager.GetUserAsync(HttpContext.User);
             if (user == null)
@@ -128,7 +144,7 @@ public class VehiculoController : Controller {
     // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, [Bind("VehiculoId,UserId,ModeloId,Patente,AnioFabricacion,FechaAlta,Activo")] VehiculoViewModel vehiculoVM) {
+    public async Task<IActionResult> Edit(int id, [Bind("VehiculoId,UserId,ModeloId,Patente,AnioFabricacion,Kilometros,FechaAlta,Activo")] VehiculoViewModel vehiculoVM) {
         if (id != vehiculoVM.VehiculoId || _context.Vehiculo == null) {
             return NotFound();
         }
@@ -146,6 +162,7 @@ public class VehiculoController : Controller {
             vehiculo.ModeloId = vehiculoVM.ModeloId;
             vehiculo.Patente = vehiculoVM.Patente.ToUpper();
             vehiculo.AnioFabricacion = vehiculoVM.AnioFabricacion;
+            vehiculo.Kilometros = vehiculoVM.Kilometros;
             vehiculo.Activo = vehiculoVM.Activo;
             
             try {

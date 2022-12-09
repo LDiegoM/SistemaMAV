@@ -1377,6 +1377,9 @@ namespace Web.Migrations
                     b.Property<DateTime>("FechaAlta")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("Kilometros")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("ModeloId")
                         .HasColumnType("INTEGER");
 
