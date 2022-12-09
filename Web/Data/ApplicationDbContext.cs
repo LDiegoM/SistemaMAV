@@ -87,9 +87,9 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
         );
 
         builder.Entity<Planilla>().HasData(
-            new Planilla { PlanillaId = 1, ModeloId = 1, Detalle = "Chevrolet Agile", AnioFabricacion = 2015, Version = 1, Activo = true },
-            new Planilla { PlanillaId = 2, ModeloId = 2, Detalle = "Ford Fiesta Kinetic Design", AnioFabricacion = 2018, Version = 1, Activo = true },
-            new Planilla { PlanillaId = 3, ModeloId = 3, Detalle = "Chevrolet Prisma", AnioFabricacion = 2017, Version = 1, Activo = true }
+            new Planilla { PlanillaId = 1, ModeloId = 1, Detalle = "Chevrolet Agile", AnioFabricacion = 2015, Kilometros = 10000, Meses = 12, Version = 1, Activo = true },
+            new Planilla { PlanillaId = 2, ModeloId = 2, Detalle = "Ford Fiesta Kinetic Design", AnioFabricacion = 2018, Kilometros = 15000, Meses = 12, Version = 1, Activo = true },
+            new Planilla { PlanillaId = 3, ModeloId = 3, Detalle = "Chevrolet Prisma", AnioFabricacion = 2017, Kilometros = 10000, Meses = 12, Version = 1, Activo = true }
         );
 
         builder.Entity<PlanillaItem>().HasData(

@@ -335,6 +335,8 @@ namespace Web.Migrations
                     ModeloId = table.Column<int>(type: "INTEGER", nullable: false),
                     Detalle = table.Column<string>(type: "varchar(270)", nullable: false),
                     AnioFabricacion = table.Column<int>(type: "INTEGER", nullable: true),
+                    Kilometros = table.Column<int>(type: "INTEGER", nullable: true),
+                    Meses = table.Column<int>(type: "INTEGER", nullable: true),
                     Version = table.Column<int>(type: "INTEGER", nullable: true),
                     Activo = table.Column<bool>(type: "bit", nullable: false)
                 },
@@ -587,12 +589,12 @@ namespace Web.Migrations
 
             migrationBuilder.InsertData(
                 table: "Planilla",
-                columns: new[] { "PlanillaId", "Activo", "AnioFabricacion", "Detalle", "ModeloId", "Version" },
+                columns: new[] { "PlanillaId", "Activo", "AnioFabricacion", "Detalle", "Kilometros", "Meses", "ModeloId", "Version" },
                 values: new object[,]
                 {
-                    { 1, true, 2015, "Chevrolet Agile", 1, 1 },
-                    { 2, true, 2018, "Ford Fiesta Kinetic Design", 2, 1 },
-                    { 3, true, 2017, "Chevrolet Prisma", 3, 1 }
+                    { 1, true, 2015, "Chevrolet Agile", 10000, 12, 1, 1 },
+                    { 2, true, 2018, "Ford Fiesta Kinetic Design", 15000, 12, 2, 1 },
+                    { 3, true, 2017, "Chevrolet Prisma", 10000, 12, 3, 1 }
                 });
 
             migrationBuilder.InsertData(
