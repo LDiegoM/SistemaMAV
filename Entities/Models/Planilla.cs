@@ -19,6 +19,10 @@ public class Planilla {
 
     public int? AnioFabricacion { get; set; }
 
+    public int? Kilometros { get; set; }
+
+    public int? Meses { get; set; }
+
     [DefaultValue(1)]
     public int? Version { get; set; }
 

@@ -11,7 +11,7 @@ using SistemaMAV.Web.Data;
 namespace Web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221129005740_InitialCreate")]
+    [Migration("20221209225406_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -596,6 +596,12 @@ namespace Web.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(270)");
 
+                    b.Property<int?>("Kilometros")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("Meses")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("ModeloId")
                         .HasColumnType("INTEGER");
 
@@ -615,6 +621,8 @@ namespace Web.Migrations
                             Activo = true,
                             AnioFabricacion = 2015,
                             Detalle = "Chevrolet Agile",
+                            Kilometros = 10000,
+                            Meses = 12,
                             ModeloId = 1,
                             Version = 1
                         },
@@ -624,6 +632,8 @@ namespace Web.Migrations
                             Activo = true,
                             AnioFabricacion = 2018,
                             Detalle = "Ford Fiesta Kinetic Design",
+                            Kilometros = 15000,
+                            Meses = 12,
                             ModeloId = 2,
                             Version = 1
                         },
@@ -633,6 +643,8 @@ namespace Web.Migrations
                             Activo = true,
                             AnioFabricacion = 2017,
                             Detalle = "Chevrolet Prisma",
+                            Kilometros = 10000,
+                            Meses = 12,
                             ModeloId = 3,
                             Version = 1
                         });

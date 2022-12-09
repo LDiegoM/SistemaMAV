@@ -57,7 +57,7 @@ public class PlanillaController : Controller {
     // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("PlanillaId,ModeloId,Detalle,AnioFabricacion,Version,Activo")] PlanillaViewModel planillaVM) {
+    public async Task<IActionResult> Create([Bind("PlanillaId,ModeloId,Detalle,AnioFabricacion,Kilometros,Meses,Version,Activo")] PlanillaViewModel planillaVM) {
         if (ModelState.IsValid) {
             _context.Add(planillaVM.ToPlanilla());
             await _context.SaveChangesAsync();
@@ -86,7 +86,7 @@ public class PlanillaController : Controller {
     // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, [Bind("PlanillaId,ModeloId,Detalle,AnioFabricacion,Version,Activo")] PlanillaViewModel planillaVM) {
+    public async Task<IActionResult> Edit(int id, [Bind("PlanillaId,ModeloId,Detalle,AnioFabricacion,Kilometros,Meses,Version,Activo")] PlanillaViewModel planillaVM) {
         if (id != planillaVM.PlanillaId) {
             return NotFound();
         }

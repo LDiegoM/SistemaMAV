@@ -32,6 +32,12 @@
                                 @Html.DisplayNameFor(model => model.AnioFabricacion)
                             </th>
                             <th>
+                                @Html.DisplayNameFor(model => model.Kilometros)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Meses)
+                            </th>
+                            <th>
                                 @Html.DisplayNameFor(model => model.Version)
                             </th>
                             <th>
@@ -58,10 +64,16 @@
                                 @Html.DisplayFor(modelItem => item.AnioFabricacion)
                             </td>
                             <td>
+                                @Html.DisplayFor(modelItem => item.Kilometros)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Meses)
+                            </td>
+                            <td>
                                 @Html.DisplayFor(modelItem => item.Version)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Activo)
+                                @Html.Raw(item.Activo ? "Si" : "No")
                             </td>
                         </tr>
 }

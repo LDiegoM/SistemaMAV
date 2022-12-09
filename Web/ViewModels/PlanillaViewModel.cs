@@ -23,6 +23,12 @@ public class PlanillaViewModel {
     [Display(Name = "Año Fabric.")]
     public int? AnioFabricacion { get; set; }
 
+    [Display(Name = "Km para realizar mantenimiento")]
+    public int? Kilometros { get; set; }
+
+    [Display(Name = "Meses para realizar mantenimiento")]
+    public int? Meses { get; set; }
+
     [Display(Name = "Versión")]
     public int? Version { get; set; }
 
@@ -41,6 +47,8 @@ public class PlanillaViewModel {
         Modelo = planilla.Modelo;
         Detalle = planilla.Detalle;
         AnioFabricacion = planilla.AnioFabricacion;
+        Kilometros = planilla.Kilometros;
+        Meses = planilla.Meses;
         Version = planilla.Version;
         Activo = planilla.Activo;
     }
@@ -51,6 +59,8 @@ public class PlanillaViewModel {
             ModeloId = ModeloId,
             Detalle = Detalle,
             AnioFabricacion = AnioFabricacion,
+            Kilometros = Kilometros,
+            Meses = Meses,
             Version = Version,
             Activo = Activo
         };
