@@ -1,0 +1,93 @@
+@model ProveedorViewModel
+
+@{
+    ViewData["Title"] = "Eliminar el Proveedor " + Model.Nombre;
+    string objName = this.ViewContext.RouteData.Values["controller"].ToString();
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box box-primary">
+            <div class="box-header">
+                <h3 class="box-title">@ViewBag.Title</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+
+                <h4>Confirma eliminar el ítem?</h4>
+                <div>
+                    <dl class="row">
+                        <dt class = "col-sm-2">
+                            @Html.DisplayNameFor(model => model.Nombre)
+                        </dt>
+                        <dd class = "col-sm-10">
+                            @Html.DisplayFor(model => model.Nombre)
+                        </dd>
+                        <dt class = "col-sm-2">
+                            @Html.DisplayNameFor(model => model.AnioApertura)
+                        </dt>
+                        <dd class = "col-sm-10">
+                            @Html.DisplayFor(model => model.AnioApertura)
+                        </dd class>
+                        <dt class = "col-sm-2">
+                            @Html.DisplayNameFor(model => model.Direccion)
+                        </dt>
+                        <dd class = "col-sm-10">
+                            @Html.DisplayFor(model => model.Direccion)
+                        </dd class>
+                        <dt class = "col-sm-2">
+                            @Html.DisplayNameFor(model => model.LocalidadId)
+                        </dt>
+                        <dd class = "col-sm-10">
+                            @Html.DisplayFor(model => model.Localidad.Nombre)
+                        </dd>
+                        <dt class = "col-sm-2">
+                            @Html.DisplayNameFor(model => model.Telefono)
+                        </dt>
+                        <dd class = "col-sm-10">
+                            @Html.DisplayFor(model => model.Telefono)
+                        </dd>
+                        <dt class = "col-sm-2">
+                            @Html.DisplayNameFor(model => model.Email)
+                        </dt>
+                        <dd class = "col-sm-10">
+                            @Html.DisplayFor(model => model.Email)
+                        </dd>
+                        <dt class = "col-sm-2">
+                            @Html.DisplayNameFor(model => model.Activo)
+                        </dt>
+                        <dd class = "col-sm-10">
+                            @Html.DisplayFor(model => model.Activo)
+                        </dd>
+                        <dt class = "col-sm-2">
+                            @Html.DisplayNameFor(model => model.VotosPositivos)
+                        </dt>
+                        <dd class = "col-sm-10">
+                            @Html.DisplayFor(model => model.VotosPositivos)
+                        </dd>
+                        <dt class = "col-sm-2">
+                            @Html.DisplayNameFor(model => model.VotosNegativos)
+                        </dt>
+                        <dd class = "col-sm-10">
+                            @Html.DisplayFor(model => model.VotosNegativos)
+                        </dd>
+                        <dt class = "col-sm-2">
+                            @Html.DisplayNameFor(model => model.Puntaje)
+                        </dt>
+                        <dd class = "col-sm-10">
+                            @Html.DisplayFor(model => model.Puntaje)
+                        </dd>
+                    </dl>
+    
+                    <form asp-action="Delete">
+                        <input type="hidden" asp-for="ProveedorId" />
+                        <div class="form-actions no-color">
+                            <a class="btn btn-default" href="/@Html.Raw(objName)/Index" title="Volver"><span class="glyphicon glyphicon-arrow-left" style="margin-right: 5px;"></span>Volver</a>
+                            <input type="submit" value="Eliminar" class="btn btn-danger" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

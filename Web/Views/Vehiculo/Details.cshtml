@@ -1,0 +1,67 @@
+@model VehiculoViewModel
+
+@{
+    ViewData["Title"] = "Detalles del Vehículo " + Model.Patente;
+    string objName = this.ViewContext.RouteData.Values["controller"].ToString();
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box box-primary">
+            <div class="box-header">
+                <h3 class="box-title">@ViewBag.Title</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <dl class="row">
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Modelo)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Modelo.Detalle)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Patente)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Patente)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.AnioFabricacion)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.AnioFabricacion)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Kilometros)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Kilometros)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.FechaAlta)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.FechaAlta)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.ProximoMantenimiento)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.ProximoMantenimiento)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Activo)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Activo)
+                    </dd>
+                </dl>
+                <p>
+                    <a class="btn btn-primary" href="/@Html.Raw(objName)/Edit/@Html.Raw(Model.VehiculoId)" title="Modificar"><span class="glyphicon glyphicon-pencil" style="margin-right: 5px;"></span>Modificar</a>
+                    <a class="btn btn-default" href="/@Html.Raw(objName)/Index" title="Volver"><span class="glyphicon glyphicon-arrow-left" style="margin-right: 5px;"></span>Volver</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

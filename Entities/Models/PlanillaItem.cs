@@ -22,4 +22,6 @@ public class PlanillaItem {
     public string? Recomendaciones { get; set; }
     public string? Observaciones { get; set; }
     public string? InfoExtra { get; set; }
+
+    public ICollection<MantenimientoItem> MantenimientoItems { get; set; }
 }

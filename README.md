@@ -26,6 +26,14 @@ El autor de este protipo y del Sistema MAV es Diego M. Lopez (ldiegom@gmail.com)
 
 ## Historial de cambios
 
+### 0.1.0 - 2022-12-10
+
+- Agrega la vista de consulta de vehículos
+- Agrega información a la página de inicio
+- Agregado de tablas adicionales y viewModels para carga de mantenimientos
+- Agrega consulta de stock de autopartes
+- Agrega gestión de mantenimientos y cálculo de próximo mantenimiento a los vehículs
+
 ### 0.0.1 - 2022-11-14
 
 - Primer versión del sistema.

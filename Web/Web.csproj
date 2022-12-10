@@ -13,6 +13,7 @@
     <None Remove="Microsoft.VisualStudio.Web.CodeGeneration.Design" />
     <None Remove="Swashbuckle.AspNetCore" />
     <None Remove="Helpers\" />
+    <None Remove="ViewModels\Consultar\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="7.0.0" />
@@ -35,5 +36,6 @@
   <ItemGroup>
     <Folder Include="Internal\" />
     <Folder Include="Helpers\" />
+    <Folder Include="ViewModels\Consultar\" />
   </ItemGroup>
 </Project>

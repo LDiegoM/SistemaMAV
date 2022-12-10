@@ -6,13 +6,14 @@
     string userName = "Invitado"; //SecurityFunctions.GetActualUser(User).FullName;
     string userFullName = "Usuario invitado";
     string pageName = "Home";
-    if (ViewContext.RouteData.Values["controller"] != null)
-        pageName = ViewContext.RouteData.Values["controller"].ToString()??pageName;
-
+    var controllerName = ViewContext.RouteData.Values["controller"];
+    if (controllerName != null)
+        pageName = controllerName.ToString()??pageName;
 
     bool flgAdminRole = false;
     bool flgUserLogedIn = false;
-    bool flgMenuConsultas = (pageName == "Home" || pageName == "Consultar" || pageName == "Propiedad" || pageName == "Manage" || pageName == "Account");
+    bool flgMenuConsultas = (pageName == "Home"
+        || pageName == "Consultar" || pageName == "Mantenimiento" || pageName == "Vehiculo" || pageName == "Manage" || pageName == "Account");
 
     @if (SignInManager.IsSignedIn(User)) {
             userName = User.Identity?.Name??userName;
@@ -31,8 +32,7 @@
         }
 }
 
-@if (true)
-{
+@if (true) {
 
     <!-- Left side column. contains the logo and sidebar -->
     <aside class="main-sidebar">
@@ -50,10 +50,10 @@
             </div>
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu" data-widget="tree">
-                <li class="header">TAREAS</li>
+                <li class="header"></li>
                 <li class="treeview @(flgMenuConsultas ? "active" : "")">
                     <a href="#">
-                        <i class="fa fa-files-o"></i>
+                        <i class="fa fa-car"></i>
                         <span>Consultas</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
@@ -62,14 +62,14 @@
                     <ul class="treeview-menu">
                         <li class="active"><a href="/"><i class="fa fa-circle-o"></i> Inicio</a></li>
                         <li class="active"><a href="/Consultar"><i class="fa fa-circle-o"></i> Consultar Vehículo</a></li>
-                        @if (flgUserLogedIn && !flgAdminRole)
-                        {
-                            <li class="active"><a href="/Propiedad"><i class="fa fa-circle-o"></i> Mis Vehículos</a></li>
+                        @if (flgUserLogedIn && !flgAdminRole) {
+                            <li class="active"><a href="/Vehiculo"><i class="fa fa-circle-o"></i> Mis Vehículos</a></li>
+                            <li class="active"><a href="/Consultar/Taller"><i class="fa fa-circle-o"></i> Lista de Talleres</a></li>
+                            <li class="active"><a href="/Mantenimiento"><i class="fa fa-circle-o"></i> Mantenimientos realizados</a></li>
                         }
                     </ul>
                 </li>
-                @if (flgAdminRole)
-                {
+                @if (flgAdminRole) {
                 <li class='treeview @(!flgMenuConsultas ? "active" : "")'>
                     <a href="#">
                         <i class="fa fa-edit"></i>
@@ -85,11 +85,19 @@
                         <li class='@(pageName == "ItemMantenimiento" ? "active" : "")'><a href="/ItemMantenimiento"><i class="fa fa-circle-o"></i> Items de Mantenimiento</a></li>
                         <li class='@(pageName == "Planilla" ? "active" : "")'><a href="/Planilla"><i class="fa fa-circle-o"></i> Planillas de Mantenimiento</a></li>
                         <li class='@(pageName == "PlanillaItem" ? "active" : "")'><a href="/PlanillaItem"><i class="fa fa-circle-o"></i> Items de Planillas</a></li>
+                        <li class='@(pageName == "Localidad" ? "active" : "")'><a href="/Localidad"><i class="fa fa-circle-o"></i> Localidades</a></li>
+                        <li class='@(pageName == "Proveedor" ? "active" : "")'><a href="/Proveedor"><i class="fa fa-circle-o"></i> Proveedores de respuestos</a></li>
+                        <li class='@(pageName == "Taller" ? "active" : "")'><a href="/Taller"><i class="fa fa-circle-o"></i> Talleres mecánicos</a></li>
+
                     </ul>
                 </li>
                 }
-                <!--<li class="header">MENSAJES</li>-->
-                <!--<li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Pasaje realizado <i class="pull-right">10:00 AM</i></span></a></li>-->
+
+                @if (!flgAdminRole) {
+                    <li class="header">CONSEJOS DIARIOS</li>
+                    <li><a href="#"><span style="white-space:normal;">Utilice el cinturón de seguridad antes de iniciar la marcha y hasta detener completamente el vehículo.</span></a></li>
+                    <li><a href="#"><span style="white-space:normal;">Mantenga actualizado el kilometraje de sus vehículos.</span></a></li>
+                }
             </ul>
         </section>
         <!-- /.sidebar -->

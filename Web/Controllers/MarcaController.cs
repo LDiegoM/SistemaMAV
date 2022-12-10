@@ -123,6 +123,9 @@ public class MarcaController : Controller {
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(int id) {
         var marca = await _context.Marca.FindAsync(id);
+        if (marca == null) {
+            return NotFound();
+        }
         _context.Marca.Remove(marca);
         await _context.SaveChangesAsync();
         return RedirectToAction(nameof(Index));

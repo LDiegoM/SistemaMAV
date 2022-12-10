@@ -11,7 +11,7 @@ using SistemaMAV.Web.Data;
 namespace Web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221114031233_InitialCreate")]
+    [Migration("20221209232933_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -385,6 +385,112 @@ namespace Web.Migrations
                         });
                 });
 
+            modelBuilder.Entity("SistemaMAV.Entities.Models.Localidad", b =>
+                {
+                    b.Property<int>("LocalidadId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("varchar(250)");
+
+                    b.HasKey("LocalidadId");
+
+                    b.ToTable("Localidad");
+
+                    b.HasData(
+                        new
+                        {
+                            LocalidadId = 1,
+                            Nombre = "Buenos Aires - CABA"
+                        },
+                        new
+                        {
+                            LocalidadId = 2,
+                            Nombre = "Buenos Aires - Zona Norte - Vicente Lopez"
+                        },
+                        new
+                        {
+                            LocalidadId = 3,
+                            Nombre = "Buenos Aires - Zona Norte - San Isidro"
+                        },
+                        new
+                        {
+                            LocalidadId = 4,
+                            Nombre = "Buenos Aires - Zona Norte - Tigre"
+                        },
+                        new
+                        {
+                            LocalidadId = 5,
+                            Nombre = "Buenos Aires - Zona Norte"
+                        });
+                });
+
+            modelBuilder.Entity("SistemaMAV.Entities.Models.Mantenimiento", b =>
+                {
+                    b.Property<int>("MantenimientoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Kilometros")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("PlanillaId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<float>("Precio")
+                        .HasColumnType("REAL");
+
+                    b.Property<int>("TallerId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("VehiculoId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("MantenimientoId");
+
+                    b.HasIndex("PlanillaId");
+
+                    b.HasIndex("TallerId");
+
+                    b.HasIndex("VehiculoId");
+
+                    b.ToTable("Mantenimiento");
+                });
+
+            modelBuilder.Entity("SistemaMAV.Entities.Models.MantenimientoItem", b =>
+                {
+                    b.Property<int>("MantenimientoItemId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("MantenimientoId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("PlanillaId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("PlanillaItemId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("Reemplazo")
+                        .HasColumnType("bit");
+
+                    b.HasKey("MantenimientoItemId");
+
+                    b.HasIndex("MantenimientoId");
+
+                    b.HasIndex("PlanillaId");
+
+                    b.HasIndex("PlanillaItemId");
+
+                    b.ToTable("MantenimientoItem");
+                });
+
             modelBuilder.Entity("SistemaMAV.Entities.Models.Marca", b =>
                 {
                     b.Property<int>("MarcaId")
@@ -463,6 +569,14 @@ namespace Web.Migrations
                             FechaAlta = new DateTime(2009, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             MarcaId = 1,
                             TipoUnidadId = 1
+                        },
+                        new
+                        {
+                            ModeloId = 3,
+                            Detalle = "Chevrolet Prisma",
+                            FechaAlta = new DateTime(2008, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            MarcaId = 2,
+                            TipoUnidadId = 1
                         });
                 });
 
@@ -481,6 +595,12 @@ namespace Web.Migrations
                     b.Property<string>("Detalle")
                         .IsRequired()
                         .HasColumnType("varchar(270)");
+
+                    b.Property<int?>("Kilometros")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("Meses")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("ModeloId")
                         .HasColumnType("INTEGER");
@@ -501,7 +621,31 @@ namespace Web.Migrations
                             Activo = true,
                             AnioFabricacion = 2015,
                             Detalle = "Chevrolet Agile",
+                            Kilometros = 10000,
+                            Meses = 12,
                             ModeloId = 1,
+                            Version = 1
+                        },
+                        new
+                        {
+                            PlanillaId = 2,
+                            Activo = true,
+                            AnioFabricacion = 2018,
+                            Detalle = "Ford Fiesta Kinetic Design",
+                            Kilometros = 15000,
+                            Meses = 12,
+                            ModeloId = 2,
+                            Version = 1
+                        },
+                        new
+                        {
+                            PlanillaId = 3,
+                            Activo = true,
+                            AnioFabricacion = 2017,
+                            Detalle = "Chevrolet Prisma",
+                            Kilometros = 10000,
+                            Meses = 12,
+                            ModeloId = 3,
                             Version = 1
                         });
                 });
@@ -693,6 +837,493 @@ namespace Web.Migrations
                             ItemMantenimientoId = 18,
                             PlanillaId = 1,
                             Recomendaciones = "Inspeccionar el nivel de líquido refrigerante mensualmente."
+                        },
+                        new
+                        {
+                            PlanillaItemId = 20,
+                            InfoExtra = "Cambie el aceite del motor y el filtro de aceite conforme a los intervalos de tiempo o kilómetros recorridos, ya que los mismos pierden sus propiedades de lubricación no solo debido al funcionamiento del motor, sino también a su envejecimiento. Verificar el nivel de aceite semanalmente o antes de iniciar un viaje de más de 50 kilómetros. Tener en cuenta que el gasto promedio de aceite es de 0,8 litros cada 1000 km.",
+                            ItemMantenimientoId = 1,
+                            Kilometros = 10000,
+                            Meses = 12,
+                            Observaciones = "Cambiar y verificar nivel con el motor a temperatura de operación normal.",
+                            PlanillaId = 3,
+                            Recomendaciones = "Utilizar aceites Elaion F50 d1 (Dexos 1 API-SN ILSAC GF-5, grado SAE 5W30)."
+                        },
+                        new
+                        {
+                            PlanillaItemId = 21,
+                            ItemMantenimientoId = 2,
+                            Kilometros = 2000,
+                            Meses = 2,
+                            PlanillaId = 3,
+                            Recomendaciones = "No esperar al siguiente servicio. Verificar frecuentemente en estaciones de servicio o talleres especializados en neumáticos."
+                        },
+                        new
+                        {
+                            PlanillaItemId = 22,
+                            InfoExtra = "Verificar el estado de los tensores.",
+                            ItemMantenimientoId = 3,
+                            Kilometros = 50000,
+                            PlanillaId = 3
+                        },
+                        new
+                        {
+                            PlanillaItemId = 23,
+                            InfoExtra = "Inspeccionar fugas de aceite, líquido refrigerante, de dirección, de freno, grasa de la caja de cambios y líquido lava-parabrisas.",
+                            ItemMantenimientoId = 4,
+                            Kilometros = 10000,
+                            Meses = 12,
+                            PlanillaId = 3
+                        },
+                        new
+                        {
+                            PlanillaItemId = 24,
+                            InfoExtra = "Inspeccionar si el vehículo presenta anomalías ocasionales. Realizar una prueba en ruta después de la inspección.",
+                            ItemMantenimientoId = 5,
+                            Kilometros = 30000,
+                            PlanillaId = 3
+                        },
+                        new
+                        {
+                            PlanillaItemId = 25,
+                            ItemMantenimientoId = 6,
+                            Kilometros = 30000,
+                            PlanillaId = 3
+                        },
+                        new
+                        {
+                            PlanillaItemId = 26,
+                            InfoExtra = "Inspeccionar el estado de la correa y del tensor automático.",
+                            ItemMantenimientoId = 7,
+                            Observaciones = "Primer control a los 20.000 Km, luego cada 50.000 Km.",
+                            PlanillaId = 3
+                        },
+                        new
+                        {
+                            PlanillaItemId = 27,
+                            ItemMantenimientoId = 8,
+                            Kilometros = 50000,
+                            PlanillaId = 3
+                        },
+                        new
+                        {
+                            PlanillaItemId = 28,
+                            InfoExtra = "Verificar el nivel y sustituir si fuera necesario.",
+                            ItemMantenimientoId = 9,
+                            Kilometros = 10000,
+                            Meses = 12,
+                            Observaciones = "Caja de velocidades",
+                            PlanillaId = 3,
+                            Recomendaciones = "Aceite mineral para cajas de cambios, SAE 75W85, engranajes helicoidales, color rojo."
+                        },
+                        new
+                        {
+                            PlanillaItemId = 29,
+                            InfoExtra = "Verificar el nivel y completar al nivel si hay fuga. Se debe corregir inmediatamente si hay fuga.",
+                            ItemMantenimientoId = 10,
+                            Kilometros = 20000,
+                            Meses = 24,
+                            PlanillaId = 3,
+                            Recomendaciones = "Líquido de frenos DOT 4 de ACDelco."
+                        },
+                        new
+                        {
+                            PlanillaItemId = 30,
+                            InfoExtra = "Verificar el nivel. No requiere cambio, excepto baja del nivel.",
+                            ItemMantenimientoId = 11,
+                            Kilometros = 10000,
+                            PlanillaId = 3,
+                            Recomendaciones = "Aceite Dexron II de ACDelco."
+                        },
+                        new
+                        {
+                            PlanillaItemId = 31,
+                            InfoExtra = "Comprobar el recorrido.",
+                            ItemMantenimientoId = 12,
+                            Kilometros = 30000,
+                            PlanillaId = 3
+                        },
+                        new
+                        {
+                            PlanillaItemId = 32,
+                            InfoExtra = "Limpiar el filtro si fuera necesario.",
+                            ItemMantenimientoId = 13,
+                            Observaciones = "Primer control a los 20.000 Km, luego cada 30.000 Km.",
+                            PlanillaId = 3
+                        },
+                        new
+                        {
+                            PlanillaItemId = 33,
+                            ItemMantenimientoId = 14,
+                            Kilometros = 30000,
+                            PlanillaId = 3
+                        },
+                        new
+                        {
+                            PlanillaItemId = 34,
+                            ItemMantenimientoId = 15,
+                            Kilometros = 20000,
+                            PlanillaId = 3
+                        },
+                        new
+                        {
+                            PlanillaItemId = 35,
+                            InfoExtra = "Colador de la bomba de combustible.",
+                            ItemMantenimientoId = 16,
+                            Kilometros = 80000,
+                            PlanillaId = 3
+                        },
+                        new
+                        {
+                            PlanillaItemId = 36,
+                            InfoExtra = "Controlar en cada inspección. No requiere sustitución, excepto que haya fuga.",
+                            ItemMantenimientoId = 17,
+                            Kilometros = 10000,
+                            PlanillaId = 3,
+                            Recomendaciones = "Gas R134a"
+                        },
+                        new
+                        {
+                            PlanillaItemId = 37,
+                            InfoExtra = "Cambiar el líquido refrigerante y reparar posibles fugas. Antes de cambiar se recomienda limpiar el sistema de refrigeración.",
+                            ItemMantenimientoId = 18,
+                            PlanillaId = 3,
+                            Recomendaciones = "Inspeccionar el nivel de líquido refrigerante mensualmente."
+                        });
+                });
+
+            modelBuilder.Entity("SistemaMAV.Entities.Models.Proveedor", b =>
+                {
+                    b.Property<int>("ProveedorId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("Activo")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("AnioApertura")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Direccion")
+                        .IsRequired()
+                        .HasColumnType("varchar(300)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<int>("LocalidadId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("varchar(250)");
+
+                    b.Property<string>("Telefono")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<int>("VotosNegativos")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("VotosPositivos")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("ProveedorId");
+
+                    b.HasIndex("LocalidadId");
+
+                    b.ToTable("Proveedor");
+
+                    b.HasData(
+                        new
+                        {
+                            ProveedorId = 1,
+                            Activo = true,
+                            AnioApertura = 2010,
+                            Direccion = "Cabildo 2000",
+                            Email = "ab@mav.com",
+                            LocalidadId = 1,
+                            Nombre = "Autopartes Belgrano",
+                            Telefono = "11112222",
+                            VotosNegativos = 3,
+                            VotosPositivos = 5
+                        },
+                        new
+                        {
+                            ProveedorId = 2,
+                            Activo = true,
+                            AnioApertura = 2010,
+                            Direccion = "Cabildo 4000",
+                            Email = "ap@mav.com",
+                            LocalidadId = 1,
+                            Nombre = "Autopartes Nuñez",
+                            Telefono = "11113333",
+                            VotosNegativos = 0,
+                            VotosPositivos = 5
+                        },
+                        new
+                        {
+                            ProveedorId = 3,
+                            Activo = true,
+                            AnioApertura = 2010,
+                            Direccion = "Posta 3400",
+                            Email = "rs@mav.com",
+                            LocalidadId = 1,
+                            Nombre = "Repuestos Saavedra",
+                            Telefono = "11114444",
+                            VotosNegativos = 3,
+                            VotosPositivos = 7
+                        },
+                        new
+                        {
+                            ProveedorId = 4,
+                            Activo = true,
+                            AnioApertura = 2010,
+                            Direccion = "Maipu 3000",
+                            Email = "olivos@mav.com",
+                            LocalidadId = 2,
+                            Nombre = "Todo para su auto Olivos",
+                            Telefono = "11115555",
+                            VotosNegativos = 0,
+                            VotosPositivos = 3
+                        },
+                        new
+                        {
+                            ProveedorId = 5,
+                            Activo = true,
+                            AnioApertura = 2010,
+                            Direccion = "Edison 2000",
+                            Email = "rm@mav.com",
+                            LocalidadId = 3,
+                            Nombre = "Repuestos Martinez",
+                            Telefono = "11116666",
+                            VotosNegativos = 3,
+                            VotosPositivos = 7
+                        },
+                        new
+                        {
+                            ProveedorId = 6,
+                            Activo = true,
+                            AnioApertura = 2010,
+                            Direccion = "Libertador 10400",
+                            Email = "at@mav.com",
+                            LocalidadId = 4,
+                            Nombre = "Autopartes Tigre",
+                            Telefono = "11117777",
+                            VotosNegativos = 3,
+                            VotosPositivos = 7
+                        });
+                });
+
+            modelBuilder.Entity("SistemaMAV.Entities.Models.Stock", b =>
+                {
+                    b.Property<int>("StockId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("CantidadEnStock")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Detalle")
+                        .IsRequired()
+                        .HasColumnType("varchar(250)");
+
+                    b.Property<int>("ItemMantenimientoId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<double>("PrecioVenta")
+                        .HasColumnType("REAL");
+
+                    b.Property<int>("ProveedorId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("StockId");
+
+                    b.HasIndex("ItemMantenimientoId");
+
+                    b.HasIndex("ProveedorId");
+
+                    b.ToTable("Stock");
+
+                    b.HasData(
+                        new
+                        {
+                            StockId = 1,
+                            CantidadEnStock = 50,
+                            Detalle = "Aceite Elaion F50 d1 (Dexos 1 API-SN ILSAC GF-5, grado SAE 5W30) x4Lt",
+                            ItemMantenimientoId = 1,
+                            PrecioVenta = 17000.0,
+                            ProveedorId = 1
+                        },
+                        new
+                        {
+                            StockId = 2,
+                            CantidadEnStock = 10,
+                            Detalle = "Aceite Elaion F50 d1 (Dexos 1 API-SN ILSAC GF-5, grado SAE 5W30) x4Lt",
+                            ItemMantenimientoId = 1,
+                            PrecioVenta = 16700.0,
+                            ProveedorId = 2
+                        },
+                        new
+                        {
+                            StockId = 3,
+                            CantidadEnStock = 20,
+                            Detalle = "Aceite Elaion F50 d1 (Dexos 1 API-SN ILSAC GF-5, grado SAE 5W30) x4Lt",
+                            ItemMantenimientoId = 1,
+                            PrecioVenta = 18200.0,
+                            ProveedorId = 3
+                        },
+                        new
+                        {
+                            StockId = 4,
+                            CantidadEnStock = 50,
+                            Detalle = "Bujía Ferrazzi Iridium+Platinum - nº 5867276",
+                            ItemMantenimientoId = 6,
+                            PrecioVenta = 2500.0,
+                            ProveedorId = 1
+                        },
+                        new
+                        {
+                            StockId = 5,
+                            CantidadEnStock = 10,
+                            Detalle = "Bujía Ferrazzi Iridium+Platinum - nº 5867276",
+                            ItemMantenimientoId = 6,
+                            PrecioVenta = 2490.0,
+                            ProveedorId = 2
+                        },
+                        new
+                        {
+                            StockId = 6,
+                            CantidadEnStock = 30,
+                            Detalle = "Bujía Ferrazzi Iridium+Platinum - nº 5867276",
+                            ItemMantenimientoId = 6,
+                            PrecioVenta = 2700.0,
+                            ProveedorId = 5
+                        });
+                });
+
+            modelBuilder.Entity("SistemaMAV.Entities.Models.Taller", b =>
+                {
+                    b.Property<int>("TallerId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("Activo")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("AnioApertura")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Direccion")
+                        .IsRequired()
+                        .HasColumnType("varchar(300)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<int>("LocalidadId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("varchar(250)");
+
+                    b.Property<string>("Telefono")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<int>("VotosNegativos")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("VotosPositivos")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("TallerId");
+
+                    b.HasIndex("LocalidadId");
+
+                    b.ToTable("Taller");
+
+                    b.HasData(
+                        new
+                        {
+                            TallerId = 1,
+                            Activo = true,
+                            AnioApertura = 2010,
+                            Direccion = "Cabildo 2000",
+                            Email = "ab@mav.com",
+                            LocalidadId = 1,
+                            Nombre = "Taller general Belgrano",
+                            Telefono = "11112222",
+                            VotosNegativos = 3,
+                            VotosPositivos = 5
+                        },
+                        new
+                        {
+                            TallerId = 2,
+                            Activo = true,
+                            AnioApertura = 2010,
+                            Direccion = "Cabildo 4000",
+                            Email = "ap@mav.com",
+                            LocalidadId = 1,
+                            Nombre = "Taller general Nuñez",
+                            Telefono = "11113333",
+                            VotosNegativos = 0,
+                            VotosPositivos = 5
+                        },
+                        new
+                        {
+                            TallerId = 3,
+                            Activo = true,
+                            AnioApertura = 2010,
+                            Direccion = "Posta 3400",
+                            Email = "rs@mav.com",
+                            LocalidadId = 1,
+                            Nombre = "Taller general Saavedra",
+                            Telefono = "11114444",
+                            VotosNegativos = 3,
+                            VotosPositivos = 7
+                        },
+                        new
+                        {
+                            TallerId = 4,
+                            Activo = true,
+                            AnioApertura = 2010,
+                            Direccion = "Maipu 3000",
+                            Email = "olivos@mav.com",
+                            LocalidadId = 2,
+                            Nombre = "Taller Olivos",
+                            Telefono = "11115555",
+                            VotosNegativos = 0,
+                            VotosPositivos = 3
+                        },
+                        new
+                        {
+                            TallerId = 5,
+                            Activo = true,
+                            AnioApertura = 2010,
+                            Direccion = "Edison 2000",
+                            Email = "rm@mav.com",
+                            LocalidadId = 3,
+                            Nombre = "Taller Martinez",
+                            Telefono = "11116666",
+                            VotosNegativos = 3,
+                            VotosPositivos = 7
+                        },
+                        new
+                        {
+                            TallerId = 6,
+                            Activo = true,
+                            AnioApertura = 2010,
+                            Direccion = "Libertador 10400",
+                            Email = "at@mav.com",
+                            LocalidadId = 4,
+                            Nombre = "Taller general Tigre",
+                            Telefono = "11117777",
+                            VotosNegativos = 3,
+                            VotosPositivos = 7
                         });
                 });
 
@@ -732,6 +1363,42 @@ namespace Web.Migrations
                             Activo = true,
                             Detalle = "Vehículo pesado"
                         });
+                });
+
+            modelBuilder.Entity("SistemaMAV.Entities.Models.Vehiculo", b =>
+                {
+                    b.Property<int>("VehiculoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("Activo")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("AnioFabricacion")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("FechaAlta")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Kilometros")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ModeloId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Patente")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.HasKey("VehiculoId");
+
+                    b.HasIndex("ModeloId");
+
+                    b.ToTable("Vehiculo");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -785,6 +1452,60 @@ namespace Web.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("SistemaMAV.Entities.Models.Mantenimiento", b =>
+                {
+                    b.HasOne("SistemaMAV.Entities.Models.Planilla", "Planilla")
+                        .WithMany("Mantenimientos")
+                        .HasForeignKey("PlanillaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SistemaMAV.Entities.Models.Taller", "Taller")
+                        .WithMany("Mantenimientos")
+                        .HasForeignKey("TallerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SistemaMAV.Entities.Models.Vehiculo", "Vehiculo")
+                        .WithMany("Mantenimientos")
+                        .HasForeignKey("VehiculoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Planilla");
+
+                    b.Navigation("Taller");
+
+                    b.Navigation("Vehiculo");
+                });
+
+            modelBuilder.Entity("SistemaMAV.Entities.Models.MantenimientoItem", b =>
+                {
+                    b.HasOne("SistemaMAV.Entities.Models.Mantenimiento", "Mantenimiento")
+                        .WithMany("MantenimientoItems")
+                        .HasForeignKey("MantenimientoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SistemaMAV.Entities.Models.Planilla", "Planilla")
+                        .WithMany("MantenimientoItems")
+                        .HasForeignKey("PlanillaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SistemaMAV.Entities.Models.PlanillaItem", "PlanillaItem")
+                        .WithMany("MantenimientoItems")
+                        .HasForeignKey("PlanillaItemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Mantenimiento");
+
+                    b.Navigation("Planilla");
+
+                    b.Navigation("PlanillaItem");
+                });
+
             modelBuilder.Entity("SistemaMAV.Entities.Models.Modelo", b =>
                 {
                     b.HasOne("SistemaMAV.Entities.Models.Marca", "Marca")
@@ -834,9 +1555,75 @@ namespace Web.Migrations
                     b.Navigation("Planilla");
                 });
 
+            modelBuilder.Entity("SistemaMAV.Entities.Models.Proveedor", b =>
+                {
+                    b.HasOne("SistemaMAV.Entities.Models.Localidad", "Localidad")
+                        .WithMany("Proveedores")
+                        .HasForeignKey("LocalidadId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Localidad");
+                });
+
+            modelBuilder.Entity("SistemaMAV.Entities.Models.Stock", b =>
+                {
+                    b.HasOne("SistemaMAV.Entities.Models.ItemMantenimiento", "ItemMantenimiento")
+                        .WithMany("Stock")
+                        .HasForeignKey("ItemMantenimientoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SistemaMAV.Entities.Models.Proveedor", "Proveedor")
+                        .WithMany("Stock")
+                        .HasForeignKey("ProveedorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ItemMantenimiento");
+
+                    b.Navigation("Proveedor");
+                });
+
+            modelBuilder.Entity("SistemaMAV.Entities.Models.Taller", b =>
+                {
+                    b.HasOne("SistemaMAV.Entities.Models.Localidad", "Localidad")
+                        .WithMany("Talleres")
+                        .HasForeignKey("LocalidadId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Localidad");
+                });
+
+            modelBuilder.Entity("SistemaMAV.Entities.Models.Vehiculo", b =>
+                {
+                    b.HasOne("SistemaMAV.Entities.Models.Modelo", "Modelo")
+                        .WithMany("Vehiculos")
+                        .HasForeignKey("ModeloId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Modelo");
+                });
+
             modelBuilder.Entity("SistemaMAV.Entities.Models.ItemMantenimiento", b =>
                 {
                     b.Navigation("PlanillaItems");
+
+                    b.Navigation("Stock");
+                });
+
+            modelBuilder.Entity("SistemaMAV.Entities.Models.Localidad", b =>
+                {
+                    b.Navigation("Proveedores");
+
+                    b.Navigation("Talleres");
+                });
+
+            modelBuilder.Entity("SistemaMAV.Entities.Models.Mantenimiento", b =>
+                {
+                    b.Navigation("MantenimientoItems");
                 });
 
             modelBuilder.Entity("SistemaMAV.Entities.Models.Marca", b =>
@@ -847,16 +1634,42 @@ namespace Web.Migrations
             modelBuilder.Entity("SistemaMAV.Entities.Models.Modelo", b =>
                 {
                     b.Navigation("Planillas");
+
+                    b.Navigation("Vehiculos");
                 });
 
             modelBuilder.Entity("SistemaMAV.Entities.Models.Planilla", b =>
                 {
+                    b.Navigation("MantenimientoItems");
+
+                    b.Navigation("Mantenimientos");
+
                     b.Navigation("PlanillaItems");
+                });
+
+            modelBuilder.Entity("SistemaMAV.Entities.Models.PlanillaItem", b =>
+                {
+                    b.Navigation("MantenimientoItems");
+                });
+
+            modelBuilder.Entity("SistemaMAV.Entities.Models.Proveedor", b =>
+                {
+                    b.Navigation("Stock");
+                });
+
+            modelBuilder.Entity("SistemaMAV.Entities.Models.Taller", b =>
+                {
+                    b.Navigation("Mantenimientos");
                 });
 
             modelBuilder.Entity("SistemaMAV.Entities.Models.TipoUnidad", b =>
                 {
                     b.Navigation("Modelos");
+                });
+
+            modelBuilder.Entity("SistemaMAV.Entities.Models.Vehiculo", b =>
+                {
+                    b.Navigation("Mantenimientos");
                 });
 #pragma warning restore 612, 618
         }

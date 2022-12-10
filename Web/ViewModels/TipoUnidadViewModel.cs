@@ -19,7 +19,9 @@ public class TipoUnidadViewModel {
 
     public ICollection<Modelo>? Modelos { get; set; }
 
-    public TipoUnidadViewModel() {}
+    public TipoUnidadViewModel() {
+        Detalle = "";
+    }
 
     public TipoUnidadViewModel(TipoUnidad tipoUnidad) {
         TipoUnidadId = tipoUnidad.TipoUnidadId;

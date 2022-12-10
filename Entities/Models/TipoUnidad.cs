@@ -16,5 +16,4 @@ public class TipoUnidad {
     public bool Activo { get; set; }
 
     public ICollection<Modelo> Modelos { get; set; }
-
 }

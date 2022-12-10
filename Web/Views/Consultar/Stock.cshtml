@@ -1,0 +1,88 @@
+@model SistemaMAV.Web.ViewModels.Consultar.StockViewModel
+
+@{
+    ViewData["Title"] = "Listado de Proveedores con Stock";
+    string objName = this.ViewContext.RouteData.Values["controller"].ToString();
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box box-default" style="border: solid 1px lightblue;">
+            <div class="box-header">
+                <h3 class="box-title">Item de Mantenimiento</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>@Html.DisplayFor(modelItem => modelItem.ItemDetalle)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Html.Raw(References.GetReferences_DataTables())
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box box-primary">
+            <div class="box-header">
+                <h3 class="box-title">@ViewBag.Title</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <table id="grd" class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Proveedor</th>
+                            <th>Localidad</th>
+                            <th>Telefono</th>
+                            <th>Email</th>
+                            <th>Puntaje</th>
+                            <th>Stock disponible</th>
+                            <th>Precio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Stock)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Detalle)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Proveedor.Nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Proveedor.Localidad.Nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Proveedor.Telefono)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Proveedor.Email)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Proveedor.Puntaje)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CantidadEnStock)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PrecioVenta)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- page script -->
+<script>$(document).ready(function () {
+        initDataGrid("grd");
+    });</script>

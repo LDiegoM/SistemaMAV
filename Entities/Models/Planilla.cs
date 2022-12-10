@@ -19,6 +19,10 @@ public class Planilla {
 
     public int? AnioFabricacion { get; set; }
 
+    public int? Kilometros { get; set; }
+
+    public int? Meses { get; set; }
+
     [DefaultValue(1)]
     public int? Version { get; set; }
 
@@ -26,4 +30,6 @@ public class Planilla {
     public bool Activo { get; set; }
 
     public ICollection<PlanillaItem> PlanillaItems { get; set; }
+    public ICollection<Mantenimiento> Mantenimientos { get; set; }
+    public ICollection<MantenimientoItem> MantenimientoItems { get; set; }
 }

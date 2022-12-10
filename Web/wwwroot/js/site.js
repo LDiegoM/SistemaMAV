@@ -12,11 +12,11 @@
                     className: "btn-sm"
                 },
 
-                {
+                /*{
                     extend: "print",
                     text: "Imprimir",
                     className: "btn-sm"
-                },
+                },*/
 
                 {
                     extend: "excelHtml5",
@@ -42,9 +42,9 @@
                 }
             },
 
-            order: [[order, orderType]],
+            order: [[order, orderType]]//,
 
-            responsive: true
+            // responsive: true
 
         });
         $('#' + grdName)[0].style = 'width: 100%;';

@@ -1,5 +1,7 @@
 ﻿using System.Text;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using SistemaMAV.Entities.Models;
+using SistemaMAV.Web.Data;
 
 namespace SistemaMAV.Web.Helpers;
 
@@ -25,14 +27,13 @@ public static class References {
 
         return sb.ToString();
     }
-}
 
-public static class Utils {
-    public static IEnumerable<ModelStateEntry> GetErrorsList(ModelStateDictionary modelState) {
-        var errors =
-            from value in modelState.Values
-            where value.ValidationState == ModelValidationState.Invalid
-            select value;
-        return errors;
+    public static string GetReferences_MorrisCharts() {
+        StringBuilder sb = new StringBuilder();
+        sb.AppendLine("<link rel=\"stylesheet\" href=\"/lib/morris.js/morris.css\" />");
+        sb.AppendLine("<script src=\"/lib/raphael/raphael.js\"></script>");
+        sb.AppendLine("<script src=\"/lib/morris.js/morris.js\"></script>");
+
+        return sb.ToString();
     }
 }
