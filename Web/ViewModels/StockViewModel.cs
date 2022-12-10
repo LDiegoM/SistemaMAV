@@ -19,7 +19,7 @@ public class StockViewModel {
     [Display(Name = "Proveedor")]
     [Required(ErrorMessage = "Debe ingresar el Proveedor")]
     public int ProveedorId { get; set; }
-    public Proveedor? Proveedor { get; set; }
+    public ProveedorViewModel? Proveedor { get; set; }
 
     [Display(Name = "Detalle")]
     [Required(ErrorMessage = "Debe ingresar el Detalle")]
@@ -40,7 +40,7 @@ public class StockViewModel {
         ItemMantenimientoId = stock.ItemMantenimientoId;
         ItemMantenimiento = stock.ItemMantenimiento;
         ProveedorId = stock.ProveedorId;
-        Proveedor = stock.Proveedor;
+        Proveedor = new ProveedorViewModel(stock.Proveedor);
         Detalle = stock.Detalle;
         CantidadEnStock = stock.CantidadEnStock;
         PrecioVenta = stock.PrecioVenta;

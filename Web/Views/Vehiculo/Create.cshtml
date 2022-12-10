@@ -20,7 +20,7 @@
                         <div class="form-group">
                             <label asp-for="ModeloId" class="control-label col-md-2"></label>
                             <div class="col-md-10">
-                                <select asp-for="ModeloId" class ="form-control" asp-items="ViewBag.ModeloId"></select>
+                                <select asp-for="ModeloId" class="form-control" asp-items="ViewBag.ModeloId"></select>
                             </div>
                         </div>
                         <div class="form-group">
@@ -35,6 +35,13 @@
                             <div class="col-md-10">
                                 <input asp-for="AnioFabricacion" class="form-control" />
                                 <span asp-validation-for="AnioFabricacion" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Kilometros" class="control-label col-md-2"></label>
+                            <div class="col-md-10">
+                                <input asp-for="Kilometros" class="form-control" />
+                                <span asp-validation-for="Kilometros" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="form-group">

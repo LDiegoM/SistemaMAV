@@ -1,0 +1,81 @@
+@model IEnumerable<MantenimientoViewModel>
+
+@{
+    ViewData["Title"] = "Mantenimientos realizados";
+    string objName = this.ViewContext.RouteData.Values["controller"].ToString();
+}
+
+@Html.Raw(References.GetReferences_DataTables())
+
+<input type="hidden" name="VehiculoId" id="VehiculoId" value='@ViewData["VehiculoId"]' />
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box box-primary">
+            <div class="box-header">
+                <h3 class="box-title">@ViewBag.Title</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <table id="grd" class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Vehiculo)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Vehiculo.Patente)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Taller)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Fecha)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Kilometros)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Precio)
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <a class="btn btn-primary btn-xs" href="/@Html.Raw(objName)/Edit/@Html.Raw(item.MantenimientoId)" title="Modificar"><span class="glyphicon glyphicon-pencil"> </span></a>
+                                    <a class="btn btn-default btn-xs" href="/@Html.Raw(objName)/Details/@Html.Raw(item.MantenimientoId)" title="Detalles"><span class="glyphicon glyphicon-eye-open"> </span></a>
+                                    <a class="btn btn-danger btn-xs" href="/@Html.Raw(objName)/Delete/@Html.Raw(item.MantenimientoId)" title="Borrar"><span class="glyphicon glyphicon-remove"> </span></a>
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.VehiculoDetalle)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Vehiculo.Patente)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Taller.Nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Fecha)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Kilometros)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Precio)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- page script -->
+<script>$(document).ready(function () {
+        initDataGrid("grd");
+    });</script>

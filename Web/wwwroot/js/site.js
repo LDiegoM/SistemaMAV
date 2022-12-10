@@ -42,7 +42,7 @@
                 }
             },
 
-            order: [[order, orderType]],
+            order: [[order, orderType]]//,
 
             // responsive: true
 

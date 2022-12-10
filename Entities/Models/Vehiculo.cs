@@ -22,6 +22,8 @@ public class Vehiculo {
     [Required]
     public int AnioFabricacion { get; set; }
 
+    public int Kilometros { get; set; }
+
     [Required]
     public DateTime FechaAlta { get; set; }
 

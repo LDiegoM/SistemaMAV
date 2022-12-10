@@ -11,7 +11,7 @@ using SistemaMAV.Web.Data;
 namespace Web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221209225406_InitialCreate")]
+    [Migration("20221209232933_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -1379,6 +1379,9 @@ namespace Web.Migrations
 
                     b.Property<DateTime>("FechaAlta")
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("Kilometros")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("ModeloId")
                         .HasColumnType("INTEGER");
