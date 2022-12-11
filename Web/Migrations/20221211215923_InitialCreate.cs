@@ -651,7 +651,17 @@ namespace Web.Migrations
                     { 34, null, 15, 20000, null, null, 3, null },
                     { 35, "Colador de la bomba de combustible.", 16, 80000, null, null, 3, null },
                     { 36, "Controlar en cada inspección. No requiere sustitución, excepto que haya fuga.", 17, 10000, null, null, 3, "Gas R134a" },
-                    { 37, "Cambiar el líquido refrigerante y reparar posibles fugas. Antes de cambiar se recomienda limpiar el sistema de refrigeración.", 18, null, null, null, 3, "Inspeccionar el nivel de líquido refrigerante mensualmente." }
+                    { 37, "Cambiar el líquido refrigerante y reparar posibles fugas. Antes de cambiar se recomienda limpiar el sistema de refrigeración.", 18, null, null, null, 3, "Inspeccionar el nivel de líquido refrigerante mensualmente." },
+                    { 40, "Reemplazar cada 1 año o 15.000Km.", 1, 15000, 12, "Capacidad 4.0Lt. Controlar el nivel periódicamente. Agregar lubricante si es necesario.", 2, "Utilizar aceites Elaion F50E (SAE 5W30 - Debe cumplir con la norma ACEA A5/B5)." },
+                    { 41, "", 2, 2000, 2, "", 2, "No esperar al siguiente servicio. Verificar frecuentemente en estaciones de servicio o talleres especializados en neumáticos." },
+                    { 42, "", 3, 120000, 96, "De ser necesario sustituir.", 2, "Comprobar el estado general. Ajustar si fuera necesario." },
+                    { 43, "", 7, 45000, 36, "", 2, "Inspeccionar el estado de la correa y del tensor automático." },
+                    { 44, "", 8, 120000, 96, "", 2, "Inspeccionar el estado del tensor automático." },
+                    { 45, "Comprobar el nivel en cada periódicamente. Reponer al nivel si fuera necesario.", 18, 105000, 72, "Capacidad: 5.5Lt.", 2, "Sustituir cada 6 años o 105.000Km (líquido de enfriamiento naranja/rosa, 50% agua destilada / 50% líquido refrigerante)." },
+                    { 46, "", 6, 60000, 48, "", 2, "Reemplazar por bujías Ford Motorcraft 16v	" },
+                    { 47, "No requiere mantenimiento.", 11, null, null, "No posee. Dispone de dirección asistida en forma electrónica (EPAS).", 2, "" },
+                    { 48, "Inspeccionar periódicamente fugas de aceite, líquido refrigerante, de dirección, de freno, grasa de la caja de cambios y líquido lava-parabrisas.", 4, 15000, 12, "", 2, "" },
+                    { 49, "", 14, 15000, 12, "", 2, "Sustituir (con mayor frecuencia en ambientes polvorientos)." }
                 });
 
             migrationBuilder.CreateIndex(
