@@ -986,6 +986,114 @@ namespace Web.Migrations
                             ItemMantenimientoId = 18,
                             PlanillaId = 3,
                             Recomendaciones = "Inspeccionar el nivel de líquido refrigerante mensualmente."
+                        },
+                        new
+                        {
+                            PlanillaItemId = 40,
+                            InfoExtra = "Reemplazar cada 1 año o 15.000Km.",
+                            ItemMantenimientoId = 1,
+                            Kilometros = 15000,
+                            Meses = 12,
+                            Observaciones = "Capacidad 4.0Lt. Controlar el nivel periódicamente. Agregar lubricante si es necesario.",
+                            PlanillaId = 2,
+                            Recomendaciones = "Utilizar aceites Elaion F50E (SAE 5W30 - Debe cumplir con la norma ACEA A5/B5)."
+                        },
+                        new
+                        {
+                            PlanillaItemId = 41,
+                            InfoExtra = "",
+                            ItemMantenimientoId = 2,
+                            Kilometros = 2000,
+                            Meses = 2,
+                            Observaciones = "",
+                            PlanillaId = 2,
+                            Recomendaciones = "No esperar al siguiente servicio. Verificar frecuentemente en estaciones de servicio o talleres especializados en neumáticos."
+                        },
+                        new
+                        {
+                            PlanillaItemId = 42,
+                            InfoExtra = "",
+                            ItemMantenimientoId = 3,
+                            Kilometros = 120000,
+                            Meses = 96,
+                            Observaciones = "De ser necesario sustituir.",
+                            PlanillaId = 2,
+                            Recomendaciones = "Comprobar el estado general. Ajustar si fuera necesario."
+                        },
+                        new
+                        {
+                            PlanillaItemId = 48,
+                            InfoExtra = "Inspeccionar periódicamente fugas de aceite, líquido refrigerante, de dirección, de freno, grasa de la caja de cambios y líquido lava-parabrisas.",
+                            ItemMantenimientoId = 4,
+                            Kilometros = 15000,
+                            Meses = 12,
+                            Observaciones = "",
+                            PlanillaId = 2,
+                            Recomendaciones = ""
+                        },
+                        new
+                        {
+                            PlanillaItemId = 46,
+                            InfoExtra = "",
+                            ItemMantenimientoId = 6,
+                            Kilometros = 60000,
+                            Meses = 48,
+                            Observaciones = "",
+                            PlanillaId = 2,
+                            Recomendaciones = "Reemplazar por bujías Ford Motorcraft 16v	"
+                        },
+                        new
+                        {
+                            PlanillaItemId = 43,
+                            InfoExtra = "",
+                            ItemMantenimientoId = 7,
+                            Kilometros = 45000,
+                            Meses = 36,
+                            Observaciones = "",
+                            PlanillaId = 2,
+                            Recomendaciones = "Inspeccionar el estado de la correa y del tensor automático."
+                        },
+                        new
+                        {
+                            PlanillaItemId = 44,
+                            InfoExtra = "",
+                            ItemMantenimientoId = 8,
+                            Kilometros = 120000,
+                            Meses = 96,
+                            Observaciones = "",
+                            PlanillaId = 2,
+                            Recomendaciones = "Inspeccionar el estado del tensor automático."
+                        },
+                        new
+                        {
+                            PlanillaItemId = 47,
+                            InfoExtra = "No requiere mantenimiento.",
+                            ItemMantenimientoId = 11,
+                            Observaciones = "No posee. Dispone de dirección asistida en forma electrónica (EPAS).",
+                            PlanillaId = 2,
+                            Recomendaciones = ""
+                        },
+                        new
+                        {
+                            PlanillaItemId = 49,
+                            InfoExtra = "",
+                            ItemMantenimientoId = 14,
+                            Kilometros = 15000,
+                            Meses = 12,
+                            Observaciones = "",
+                            PlanillaId = 2,
+                            Recomendaciones = "Sustituir (con mayor frecuencia en ambientes polvorientos)."
+                        },
+                        new
+                        {
+                            PlanillaItemId = 45,
+                            InfoExtra = "Comprobar el nivel en cada periódicamente. Reponer al nivel si fuera necesario.",
+                            ItemMantenimientoId = 18,
+                            Kilometros = 105000,
+                            Meses = 72,
+                            Observaciones = "Capacidad: 5.5Lt.",
+                            PlanillaId = 2,
+                            Recomendaciones = "Sustituir cada 6 años o 105.000Km (líquido de enfriamiento naranja/rosa, 50% agua destilada / 50% líquido refrigerante)."
                         });
                 });
 

@@ -14,8 +14,9 @@ public class MantenimientoViewModel {
     [Display(Name = "Vehículo")]
     [Required(ErrorMessage = "Debe ingresar el Vehículo")]
     public int VehiculoId { get; set; }
-    [Display(Name = "Vehiculo")]
+    [Display(Name = "Vehículo")]
     public Vehiculo? Vehiculo { get; set; }
+    [Display(Name = "Vehículo")]
     public string? VehiculoDetalle { get; set; }
 
     [Display(Name = "Taller")]

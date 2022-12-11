@@ -1,8 +1,19 @@
 ﻿@model SistemaMAV.Web.ViewModels.Consultar.ItemsViewModel
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 
 @{
     ViewData["Title"] = "Mantenimiento de " + Model.Planilla.Modelo.Detalle + " " + Model.Planilla.AnioFabricacion.ToString();
     string objName = this.ViewContext.RouteData.Values["controller"].ToString();
+
+    bool flgUserLogedIn = false;
+
+    @if (SignInManager.IsSignedIn(User) && User.Identity != null) {
+        IdentityUser? user = await UserManager.FindByNameAsync(User.Identity.Name??"");
+        if (user != null) {
+            flgUserLogedIn = true;
+        }
+    }
 }
 
 @Html.Raw(References.GetReferences_DataTables())
@@ -64,7 +75,7 @@
                         @foreach (SistemaMAV.Web.ViewModels.Consultar.ConsultaPlanillaItemViewModel item in Model.Items) {
                             <tr>
                                 <td>
-@if (item.HayStock == true) {
+@if (item.HayStock && flgUserLogedIn) {
                                     <a class="btn btn-default btn-xs" href="/Consultar/Stock/@Html.Raw(item.ItemMantenimientoId)" title="Consultar stock y precios"><span class="glyphicon glyphicon-usd"> </span></a>
 }
                                 </td>

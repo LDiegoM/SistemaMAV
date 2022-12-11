@@ -228,7 +228,7 @@ public class MantenimientoController : Controller {
             return NotFound();
 
         MantenimientoViewModel mantenimientoVM = new MantenimientoViewModel(mantenimiento);
-        mantenimientoVM.VehiculoDetalle = mantenimientoVM.Vehiculo.Modelo.Detalle + " " + mantenimientoVM.Vehiculo.AnioFabricacion.ToString() + " " + mantenimientoVM.Vehiculo.Patente;
+        mantenimientoVM.VehiculoDetalle = mantenimientoVM.Vehiculo.Modelo.Detalle + " " + mantenimientoVM.Vehiculo.AnioFabricacion.ToString() + " - " + mantenimientoVM.Vehiculo.Patente;
 
         CargarListasDeVehiculosYTalleres(null, user.Id);
 
@@ -291,7 +291,7 @@ public class MantenimientoController : Controller {
         }
 
         MantenimientoViewModel mantenimientoVM = new MantenimientoViewModel(mantenimiento);
-        mantenimientoVM.VehiculoDetalle = mantenimientoVM.Vehiculo.Modelo.Detalle + " " + mantenimientoVM.Vehiculo.AnioFabricacion.ToString() + " " + mantenimientoVM.Vehiculo.Patente;
+        mantenimientoVM.VehiculoDetalle = mantenimientoVM.Vehiculo.Modelo.Detalle + " " + mantenimientoVM.Vehiculo.AnioFabricacion.ToString() + " - " + mantenimientoVM.Vehiculo.Patente;
 
         return View(mantenimientoVM);
     }
