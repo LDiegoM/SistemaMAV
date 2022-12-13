@@ -11,7 +11,7 @@ using SistemaMAV.Web.Data;
 namespace Web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221211215923_InitialCreate")]
+    [Migration("20221213224917_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -1577,7 +1577,7 @@ namespace Web.Migrations
                     b.HasOne("SistemaMAV.Entities.Models.Vehiculo", "Vehiculo")
                         .WithMany("Mantenimientos")
                         .HasForeignKey("VehiculoId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Planilla");
@@ -1598,13 +1598,13 @@ namespace Web.Migrations
                     b.HasOne("SistemaMAV.Entities.Models.Planilla", "Planilla")
                         .WithMany("MantenimientoItems")
                         .HasForeignKey("PlanillaId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("SistemaMAV.Entities.Models.PlanillaItem", "PlanillaItem")
                         .WithMany("MantenimientoItems")
                         .HasForeignKey("PlanillaItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Mantenimiento");
