@@ -439,8 +439,7 @@ namespace Web.Migrations
                         name: "FK_Mantenimiento_Vehiculo_VehiculoId",
                         column: x => x.VehiculoId,
                         principalTable: "Vehiculo",
-                        principalColumn: "VehiculoId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "VehiculoId");
                 });
 
             migrationBuilder.CreateTable(
@@ -467,14 +466,12 @@ namespace Web.Migrations
                         name: "FK_MantenimientoItem_PlanillaItem_PlanillaItemId",
                         column: x => x.PlanillaItemId,
                         principalTable: "PlanillaItem",
-                        principalColumn: "PlanillaItemId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "PlanillaItemId");
                     table.ForeignKey(
                         name: "FK_MantenimientoItem_Planilla_PlanillaId",
                         column: x => x.PlanillaId,
                         principalTable: "Planilla",
-                        principalColumn: "PlanillaId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "PlanillaId");
                 });
 
             migrationBuilder.InsertData(

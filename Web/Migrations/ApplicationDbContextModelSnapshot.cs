@@ -1574,7 +1574,7 @@ namespace Web.Migrations
                     b.HasOne("SistemaMAV.Entities.Models.Vehiculo", "Vehiculo")
                         .WithMany("Mantenimientos")
                         .HasForeignKey("VehiculoId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Planilla");
@@ -1595,13 +1595,13 @@ namespace Web.Migrations
                     b.HasOne("SistemaMAV.Entities.Models.Planilla", "Planilla")
                         .WithMany("MantenimientoItems")
                         .HasForeignKey("PlanillaId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("SistemaMAV.Entities.Models.PlanillaItem", "PlanillaItem")
                         .WithMany("MantenimientoItems")
                         .HasForeignKey("PlanillaItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Mantenimiento");

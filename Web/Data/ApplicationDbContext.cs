@@ -15,6 +15,21 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     protected override void OnModelCreating(ModelBuilder builder) {
         base.OnModelCreating(builder);
 
+        builder.Entity<Mantenimiento>()
+            .HasOne(m => m.Vehiculo)
+            .WithMany(v => v.Mantenimientos)
+            .OnDelete(DeleteBehavior.NoAction);
+
+        builder.Entity<MantenimientoItem>()
+            .HasOne(m => m.Planilla)
+            .WithMany(p => p.MantenimientoItems)
+            .OnDelete(DeleteBehavior.NoAction);
+
+        builder.Entity<MantenimientoItem>()
+            .HasOne(m => m.PlanillaItem)
+            .WithMany(i => i.MantenimientoItems)
+            .OnDelete(DeleteBehavior.NoAction);
+
         builder.Entity<IdentityRole>().HasData(
             new IdentityRole { Id = "admin", Name = "Administrador", NormalizedName = "ADMINISTRADOR"}
         );

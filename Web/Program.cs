@@ -5,7 +5,7 @@ using SistemaMAV.Web.ViewModels;
 using SistemaMAV.Web.Services;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.WebHost.UseUrls("https://*:7174", "http://*:80");
+builder.WebHost.UseUrls("https://*:7174", "http://*:8081");
 
 // Add services to the container.
 
